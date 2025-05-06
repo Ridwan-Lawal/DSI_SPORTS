@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  * {
+    @apply m-0 box-border p-0;
+  }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  h1 {
+    @apply text-[47.78px];
+  }
+  h2 {
+    @apply text-[39.81px];
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h3 {
+    @apply text-[33.18px];
+  }
+
+  h4 {
+    @apply text-[27.65px];
+  }
+  h5 {
+    @apply text-[23.04px];
+  }
+  h6 {
+    @apply text-[19.2px];
+  }
+  p.small {
+    @apply text-[13.33px];
+  }
+
+  p.very-small {
+    @apply text-[11.11px];
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  button {
+    @apply cursor-pointer disabled:cursor-not-allowed;
+  }
+
+  .back-to-login {
+    @apply bg-neutral-200 font-medium text-neutral-900 transition-colors hover:bg-gray-300;
+  }
+
+  .auth-btn {
+    @apply w-full rounded-md bg-neutral-900 px-3 py-2.5 text-sm text-[15px] text-white transition-colors hover:bg-neutral-800 md:text-base;
+  }
+
+  input {
+    @apply flex h-10 w-full rounded-md border border-neutral-200 px-3 py-2 text-[15px] ring-neutral-300 transition-all placeholder:text-neutral-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
+  }
+
+  input.password {
+    @apply flex h-10 w-full rounded-md border-0 px-3 py-2 text-[15px] transition-all placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
+  }
+
+  .password-field {
+    @apply flex items-center gap-3 rounded-md border border-neutral-200 pr-3;
+  }
+
+  .password-field-focus {
+    @apply ring-2 ring-neutral-300 ring-offset-2 outline-none;
+  }
+}
+
+@layer utilities {
 }

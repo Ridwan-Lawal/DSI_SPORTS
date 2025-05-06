@@ -1,0 +1,1 @@
+ALTER TABLE "user" ALTER COLUMN "isFirstLogin" SET DEFAULT true;
