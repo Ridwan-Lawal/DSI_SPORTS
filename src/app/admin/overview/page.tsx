@@ -1,4 +1,3 @@
-import { auth } from "@/src/auth";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,6 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const session = await auth();
-  return <div>{JSON.stringify(session)}</div>;
+  return <div>overview</div>;
 }

@@ -1,3 +1,4 @@
+import StoreProvider from "@/src/app/_lib/redux/StoreProvider";
 import { roboto } from "@/src/app/_styles/font";
 import "@_styles/globals.css";
 import { Metadata } from "next";
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto?.className} antialiased`}>
-        {children}
+        <StoreProvider>
+          <main>{children}</main>
+        </StoreProvider>
         <Toaster
           position="top-center"
           toastOptions={{

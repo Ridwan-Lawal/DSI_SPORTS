@@ -3,7 +3,7 @@
 import PasswordInput from "@/src/app/_components/auth/PasswordInput";
 import { usePassword } from "@/src/app/_hooks/usePassword";
 import { createNewPasswordAction } from "@/src/app/_lib/actions/auth/create-new-password";
-import { PASSWORD_REQUIREMENT } from "@/src/app/_lib/constant";
+import { PASSWORD_REQUIREMENT } from "@/src/app/_utils/constant";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useActionState, useEffect } from "react";
