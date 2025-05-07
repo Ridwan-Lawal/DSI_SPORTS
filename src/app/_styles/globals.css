@@ -1,10 +1,18 @@
 @import "tailwindcss";
 
+@plugin 'tailwind-scrollbar';
+
 @layer base {
   * {
     @apply m-0 box-border p-0;
   }
+  html {
+    @apply scrollbar-thin scrollbar-thumb-neutral-500;
+  }
 
+  body {
+    @apply scrollbar-thin scrollbar-thumb-neutral-500;
+  }
   h1 {
     @apply text-[47.78px];
   }
@@ -35,6 +43,34 @@
 }
 
 @layer components {
+  /* side bar */
+  .section-block {
+    @apply space-y-2;
+  }
+
+  .section-block p {
+    @apply text-[13px] font-medium text-neutral-600 capitalize;
+  }
+
+  .section-block ul {
+    @apply flex flex-col gap-1;
+  }
+
+  .section-block ul li {
+    @apply flex items-center gap-3 rounded-md px-3 py-2 text-[14.5px] font-medium text-neutral-500 capitalize transition-all hover:bg-neutral-100;
+  }
+
+  /* navbar */
+
+  .admin-nav ul {
+    @apply flex items-center gap-5;
+  }
+
+  .admin-nav ul li {
+    @apply text-[14.5px] font-medium text-neutral-500 hover:font-semibold hover:text-neutral-900;
+  }
+
+  /* button */
   button {
     @apply cursor-pointer disabled:cursor-not-allowed;
   }
