@@ -1,4 +1,4 @@
-import { getAdminById } from "@/src/app/_lib/data-service/server/auth/auth-service";
+import { getAdminById } from "@/src/app/_lib/data-service/auth/auth-service";
 import { authConfig } from "@/src/auth.config";
 import { db } from "@/src/db";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";

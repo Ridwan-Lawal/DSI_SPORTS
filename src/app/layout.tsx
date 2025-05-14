@@ -1,3 +1,4 @@
+import QueryProviders from "@/src/app/_lib/react-query/Providers";
 import StoreProvider from "@/src/app/_lib/redux/StoreProvider";
 import { roboto } from "@/src/app/_styles/font";
 import "@_styles/globals.css";
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto?.className} antialiased`}>
-        <StoreProvider>
-          <main>{children}</main>
-        </StoreProvider>
+        <QueryProviders>
+          <StoreProvider>
+            <main>{children}</main>
+          </StoreProvider>
+        </QueryProviders>
         <Toaster
           position="top-center"
           toastOptions={{

@@ -1,8 +1,8 @@
 "use server";
 
-import { getAdminByEmail } from "@/src/app/_lib/data-service/server/auth/auth-service";
-import { sendPasswordCreateMail } from "@/src/app/_lib/data-service/server/auth/mails";
-import { generatePasswordCreateToken } from "@/src/app/_lib/data-service/server/auth/tokens";
+import { getAdminByEmail } from "@/src/app/_lib/data-service/auth/auth-service";
+import { sendPasswordCreateMail } from "@/src/app/_lib/data-service/auth/mails";
+import { generatePasswordCreateToken } from "@/src/app/_lib/data-service/auth/tokens";
 import { LoginSchema } from "@/src/app/_lib/schema/auth-schema";
 import { signIn } from "@/src/auth";
 import bcrypt from "bcryptjs";

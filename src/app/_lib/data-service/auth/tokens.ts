@@ -1,7 +1,7 @@
 import {
   getPasswordCreateTokenByEmail,
   getPasswordResetTokenByEmail,
-} from "@/src/app/_lib/data-service/server/auth/auth-service";
+} from "@/src/app/_lib/data-service/auth/auth-service";
 import { db } from "@/src/db";
 import { passwordCreateToken, passwordResetTokens } from "@/src/db/schema/auth";
 

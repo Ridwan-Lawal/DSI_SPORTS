@@ -65,7 +65,6 @@ export const passwordCreateToken = pgTable("passwordCreateToken", {
 export const passwordResetTokens = pgTable("passwordResetTokens", {
   id: text("id")
     .primaryKey()
-    .unique()
     .notNull()
     .$defaultFn(() => crypto.randomUUID()),
 

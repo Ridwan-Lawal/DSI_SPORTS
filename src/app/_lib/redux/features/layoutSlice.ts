@@ -14,7 +14,7 @@ const layoutSlice = createSlice({
   initialState,
   reducers: {
     onToggleSidebar(state, action: PayloadAction<undefined | boolean>) {
-      if (action?.payload) {
+      if (action?.payload === true || action?.payload === false) {
         state.mobileSidebarIsOpen = action.payload;
       } else {
         state.mobileSidebarIsOpen = !state.mobileSidebarIsOpen;

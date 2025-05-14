@@ -1,6 +1,7 @@
 "use client";
 
 import logoNoBg from "@/public/svg/logo-grayscale.svg";
+import { useSidebar } from "@/src/app/_hooks/useSidebar";
 import {
   getLayout,
   onToggleSidebar,
@@ -12,33 +13,18 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 
 export default function SidebarAdmin() {
   const pathname = usePathname();
   const { mobileSidebarIsOpen } = useAppSelector(getLayout);
   const dispatch = useAppDispatch();
+  useSidebar();
 
-  useEffect(() => {
-    // on reload this should run
-    if (window.innerWidth >= 768) {
-      dispatch(onToggleSidebar(true));
-    } else {
+  function onClickSidebarLinkOnMobile() {
+    if (window.innerWidth <= 768) {
       dispatch(onToggleSidebar(false));
     }
-    // while this should run as the screen is being resized
-    function onViewport() {
-      if (window.innerWidth >= 768) {
-        dispatch(onToggleSidebar(true));
-      } else {
-        dispatch(onToggleSidebar(false));
-      }
-    }
-
-    window.addEventListener("resize", onViewport);
-
-    return () => window.removeEventListener("resize", onViewport);
-  }, [dispatch]);
+  }
 
   return (
     <AnimatePresence>
@@ -48,7 +34,7 @@ export default function SidebarAdmin() {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -300, opacity: 0 }}
           transition={{ ease: "linear", duration: 0.2 }}
-          className="fixed z-30 w-full bg-black/30 backdrop-blur-[2px] md:static"
+          className="sidebar-overlay fixed z-30 w-full bg-black/30 backdrop-blur-[2px] md:static"
         >
           <div className="z-30 flex h-screen w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px]">
             {/* header */}
@@ -83,6 +69,7 @@ export default function SidebarAdmin() {
                     <Link href={page?.link} key={page?.name}>
                       <li
                         className={`group ${pathname === page?.link && "bg-neutral-100 text-neutral-700"}`}
+                        onClick={onClickSidebarLinkOnMobile}
                       >
                         <span>
                           <page.icon className="size-[18px] group-hover:text-neutral-700" />
@@ -105,6 +92,7 @@ export default function SidebarAdmin() {
                     <Link href={page?.link} key={page?.name}>
                       <li
                         className={`group ${pathname === page?.link && "bg-neutral-100 text-neutral-700"}`}
+                        onClick={onClickSidebarLinkOnMobile}
                       >
                         <span>
                           <page.icon className="size-[18px] group-hover:text-neutral-700" />
@@ -127,6 +115,7 @@ export default function SidebarAdmin() {
                     <Link href={page?.link} key={page?.name}>
                       <li
                         className={`group ${pathname === page?.link && "bg-neutral-100 text-neutral-700"}`}
+                        onClick={onClickSidebarLinkOnMobile}
                       >
                         <span>
                           <page.icon className="size-[18px] group-hover:text-neutral-700" />
@@ -146,9 +135,14 @@ export default function SidebarAdmin() {
                 <p className="">teams</p>
                 <ul className="">
                   {TEAMS?.map((page) => (
-                    <Link href={page?.link} key={page?.name}>
+                    <Link
+                      href={page?.link}
+                      key={page?.name}
+                      onClick={onClickSidebarLinkOnMobile}
+                    >
                       <li
                         className={`group ${pathname === page?.link && "bg-neutral-100 text-neutral-700"}`}
+                        onClick={onClickSidebarLinkOnMobile}
                       >
                         <span>
                           <page.icon className="size-[18px] group-hover:text-neutral-700" />
@@ -182,3 +176,5 @@ export default function SidebarAdmin() {
     </AnimatePresence>
   );
 }
+
+// start working on creating new article page

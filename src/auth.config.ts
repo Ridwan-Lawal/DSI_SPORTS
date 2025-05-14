@@ -1,4 +1,4 @@
-import { getAdminByEmail } from "@/src/app/_lib/data-service/server/auth/auth-service";
+import { getAdminByEmail } from "@/src/app/_lib/data-service/auth/auth-service";
 import { LoginSchema } from "@/src/app/_lib/schema/auth-schema";
 import bcrypt from "bcryptjs";
 import { NextAuthConfig } from "next-auth";
