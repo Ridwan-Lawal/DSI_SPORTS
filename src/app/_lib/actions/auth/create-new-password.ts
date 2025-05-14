@@ -3,7 +3,7 @@
 import {
   getAdminByEmail,
   getPasswordCreateTokenByToken,
-} from "@/src/app/_lib/data-service/server/auth/auth-service";
+} from "@/src/app/_lib/data-service/auth/auth-service";
 import { CreateNewPassword } from "@/src/app/_lib/schema/auth-schema";
 import { db } from "@/src/db";
 import { passwordCreateToken, users } from "@/src/db/schema/auth";

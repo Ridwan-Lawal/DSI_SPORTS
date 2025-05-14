@@ -3,9 +3,9 @@
 import {
   getAdminByEmail,
   getPasswordResetTokenByToken,
-} from "@/src/app/_lib/data-service/server/auth/auth-service";
-import { sendPasswordResetMail } from "@/src/app/_lib/data-service/server/auth/mails";
-import { generatePasswordResetToken } from "@/src/app/_lib/data-service/server/auth/tokens";
+} from "@/src/app/_lib/data-service/auth/auth-service";
+import { sendPasswordResetMail } from "@/src/app/_lib/data-service/auth/mails";
+import { generatePasswordResetToken } from "@/src/app/_lib/data-service/auth/tokens";
 import {
   ForgotPassword,
   ResetPassword,
