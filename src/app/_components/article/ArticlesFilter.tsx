@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,8 +10,37 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Filter } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function ArticlesFilter() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const onFormSearch = useDebouncedCallback(function onFormSearch(
+    search: string,
+  ) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (!search) {
+      params.delete("search");
+    } else {
+      params.set("search", search);
+    }
+
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }, 900);
+
+  function onSelectStatus(status: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (!status) {
+      params.delete("status");
+    } else {
+      params.set("status", status);
+    }
+
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }
+
   return (
     <div className="mt-9 flex items-center justify-between gap-5">
       <form
@@ -25,6 +56,7 @@ export default function ArticlesFilter() {
           autoComplete="article-search"
           aria-label="article search"
           placeholder="Search articles by title and category..."
+          onChange={(e) => onFormSearch(e.target.value)}
         />
       </form>
 
@@ -47,6 +79,7 @@ export default function ArticlesFilter() {
             <DropdownMenuCheckboxItem
               key={status}
               className="text-sm font-medium text-neutral-700 capitalize"
+              onClick={() => onSelectStatus(status)}
             >
               {status}
             </DropdownMenuCheckboxItem>
