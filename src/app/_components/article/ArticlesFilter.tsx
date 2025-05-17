@@ -9,12 +9,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Filter } from "lucide-react";
+import { CheckIcon, Filter } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function ArticlesFilter() {
   const searchParams = useSearchParams();
+  const currentStatus = searchParams.get("status") || "";
   const pathname = usePathname();
   const router = useRouter();
   const onFormSearch = useDebouncedCallback(function onFormSearch(
@@ -33,6 +34,9 @@ export default function ArticlesFilter() {
   function onSelectStatus(status: string) {
     const params = new URLSearchParams(searchParams.toString());
     if (!status) {
+      params.delete("status");
+    } else if (status === currentStatus) {
+      // if the status selected is equal to the current status already in the url, unselect the status, by deleting from the url.
       params.delete("status");
     } else {
       params.set("status", status);
@@ -75,13 +79,15 @@ export default function ArticlesFilter() {
             Status
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {["published", "draft"]?.map((status) => (
+          {["all", "published", "draft"]?.map((status) => (
             <DropdownMenuCheckboxItem
               key={status}
               className="text-sm font-medium text-neutral-700 capitalize"
-              onClick={() => onSelectStatus(status)}
+              onClick={() => {
+                onSelectStatus(status);
+              }}
             >
-              {status}
+              {currentStatus === status && <CheckIcon />} {status}
             </DropdownMenuCheckboxItem>
           ))}
         </DropdownMenuContent>

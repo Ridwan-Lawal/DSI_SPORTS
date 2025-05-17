@@ -4,24 +4,20 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getArticles } from "@/src/app/_lib/data-service/articles/articles-data";
+import { formatDate } from "@/src/app/_utils/formatData";
 import { EllipsisVertical } from "lucide-react";
 
-const invoices = [
-  {
-    title: "Champions league from the united state to the middle east",
-    category: "Champions league",
-    status: "published",
-    date: "12 aug, 2002",
-  },
-  {
-    title: "Vinicius transfer",
-    category: "transfer",
-    status: "draft",
-    date: "12 aug, 2002",
-  },
-];
+interface ArticlesProps {
+  queries: {
+    search?: string | undefined;
+    status?: string | undefined;
+  };
+}
 
-export default function Articles() {
+export default async function Articles({ queries }: ArticlesProps) {
+  const articles = await getArticles(queries);
+
   return (
     <div className="mt-9 overflow-hidden rounded-md border border-neutral-100 text-sm">
       <div className="hidden w-full grid-cols-3 justify-between gap-4 bg-neutral-50 px-3 py-4 md:grid md:grid-cols-4 lg:grid-cols-5">
@@ -31,38 +27,38 @@ export default function Articles() {
         <div className="justify-self-center">Date</div>
       </div>
       <div className="w-full odd:bg-neutral-100">
-        {invoices.map((invoice) => (
+        {articles?.map((article) => (
           <div
             className="justify-items-between lg:min-h-[80px grid min-h-[100px] w-full grid-cols-3 items-center gap-4 px-3 py-3 text-[13.5px] text-neutral-700 odd:bg-neutral-50 even:bg-white md:grid-cols-4 md:text-sm md:odd:bg-white md:even:bg-neutral-50 lg:grid-cols-5"
-            key={invoice?.title}
+            key={article?.title}
           >
             <p className="max-w-[200px] break-words whitespace-normal capitalize">
-              {invoice?.title}
+              {article?.title}
             </p>
             {/* category and status for mobile */}
             <div className="flex flex-col items-center gap-4 md:hidden">
               <p className="break-words whitespace-normal capitalize">
-                {invoice?.category}
+                {article?.category}
               </p>
               <p
-                className={`capitalize ${invoice?.status === "published" ? "bg-green-100 text-green-600" : "bg-orange-100 text-orange-600"} rounded-xl px-4 py-[3px] text-xs font-medium`}
+                className={`capitalize ${article?.status === "published" ? "bg-green-100 text-green-600" : "bg-orange-100 text-orange-600"} rounded-xl px-4 py-[3px] text-xs font-medium`}
               >
-                {invoice?.status}
+                {article?.status}
               </p>
             </div>
 
             {/* category and status for desktop */}
             <p className="hidden justify-self-center break-words whitespace-normal capitalize md:block">
-              {invoice?.category}
+              {article?.category}
             </p>
             <p
-              className={`hidden self-center justify-self-center text-xs capitalize md:block ${invoice?.status === "published" ? "bg-green-100 text-green-600" : "bg-orange-100 text-orange-600"} rounded-xl px-4 py-[3px] font-medium`}
+              className={`hidden self-center justify-self-center text-xs capitalize md:block ${article?.status === "published" ? "bg-green-100 text-green-600" : "bg-orange-100 text-orange-600"} rounded-xl px-4 py-[3px] font-medium`}
             >
-              {invoice?.status}
+              {article?.status}
             </p>
 
             <p className="hidden justify-self-center lg:block">
-              {invoice?.date}
+              {formatDate(article?.publishedAt) ?? "N/A"}
             </p>
 
             <div className="flex h-full flex-col items-end justify-between gap-4 lg:justify-center">
@@ -81,7 +77,9 @@ export default function Articles() {
                   ))}
                 </DropdownMenuContent>
               </DropdownMenu>
-              <p className="lg:hidden">{invoice?.date}</p>
+              <p className="lg:hidden">
+                {formatDate(article?.publishedAt) ?? "N/A"}
+              </p>
             </div>
           </div>
         ))}
