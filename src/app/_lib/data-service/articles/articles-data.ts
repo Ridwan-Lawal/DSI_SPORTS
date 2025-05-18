@@ -1,18 +1,22 @@
 // Not cached - render dynamically
 // Not called multiple times - so no
 
+import { ARTICLES_PER_PAGE } from "@/src/app/_utils/constant";
 import { getUser } from "@/src/app/_utils/get-session";
 import { db } from "@/src/db";
 import { posts } from "@/src/db/schema/article";
 import { eq, ilike, or } from "drizzle-orm";
 import { redirect } from "next/navigation";
+import { cache } from "react";
 
-export async function getArticles({
+export const getArticles = cache(async function ({
   status,
   search,
+  page,
 }: {
   status?: string;
   search?: string;
+  page?: string;
 }) {
   // check if the user trying to call the server action is a logged in user
   const user = await getUser();
@@ -33,6 +37,9 @@ export async function getArticles({
         ilike(posts.category, `%${search}%`),
       ),
     ) as typeof dbQuery;
+  } else if (page) {
+    const offset = (+page - 1) * 1 * 10;
+    dbQuery = dbQuery.limit(ARTICLES_PER_PAGE).offset(offset) as typeof dbQuery;
   }
 
   try {
@@ -44,4 +51,5 @@ export async function getArticles({
       throw new Error(error?.message);
     }
   }
-}
+});
+// build the pagination

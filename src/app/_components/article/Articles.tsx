@@ -12,6 +12,7 @@ interface ArticlesProps {
   queries: {
     search?: string | undefined;
     status?: string | undefined;
+    page?: string | undefined;
   };
 }
 
@@ -30,7 +31,7 @@ export default async function Articles({ queries }: ArticlesProps) {
         {articles?.map((article) => (
           <div
             className="justify-items-between lg:min-h-[80px grid min-h-[100px] w-full grid-cols-3 items-center gap-4 px-3 py-3 text-[13.5px] text-neutral-700 odd:bg-neutral-50 even:bg-white md:grid-cols-4 md:text-sm md:odd:bg-white md:even:bg-neutral-50 lg:grid-cols-5"
-            key={article?.title}
+            key={article?.id}
           >
             <p className="max-w-[200px] break-words whitespace-normal capitalize">
               {article?.title}
