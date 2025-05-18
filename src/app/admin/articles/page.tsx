@@ -34,7 +34,7 @@ export default async function Page({
       </Suspense>
 
       <Suspense fallback={<div>Loading...</div>} key={suspenseKeyPagination}>
-        <ArticlesPagination />
+        <ArticlesPagination queries={queries} />
       </Suspense>
     </div>
   );
