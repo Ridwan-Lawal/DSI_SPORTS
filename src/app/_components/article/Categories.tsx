@@ -56,7 +56,7 @@ export default function Categories({
           className="placeholder:lowercase"
         />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="border-neutral-100">
         <SelectGroup>
           <SelectLabel>Categories</SelectLabel>
           {categoriesData?.map((categoryData) => (
