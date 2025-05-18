@@ -10,6 +10,8 @@ import {
   Users,
 } from "lucide-react";
 
+export const ARTICLES_PER_PAGE = 10;
+
 export const PAGES = [
   { name: "home", link: "/", icon: Home },
   { name: "news", link: "/news", icon: Rss },
