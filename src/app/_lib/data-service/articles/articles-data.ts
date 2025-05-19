@@ -9,6 +9,28 @@ import { eq, ilike, or } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { cache } from "react";
 
+export async function getArticleById(articleToEditId: string | undefined) {
+  const user = await getUser();
+  if (!user || !user?.id) {
+    redirect("/auth/admin/login");
+  }
+
+  if (articleToEditId) {
+    try {
+      const articleToEdit = await db
+        .select()
+        .from(posts)
+        .where(eq(posts?.id, articleToEditId));
+
+      return articleToEdit;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error?.message);
+      }
+    }
+  }
+}
+
 export const getArticles = cache(async function ({
   status,
   search,

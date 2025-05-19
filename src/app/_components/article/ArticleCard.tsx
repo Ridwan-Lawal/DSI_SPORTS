@@ -11,6 +11,7 @@ import { formatDate } from "@/src/app/_utils/formatData";
 import { posts } from "@/src/db/schema/article";
 import { InferSelectModel } from "drizzle-orm";
 import { EllipsisVertical } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
 import toast from "react-hot-toast";
 
@@ -24,8 +25,17 @@ export default function ArticleCard({
   optimisticDelete: (action: string) => void;
 }) {
   const [isDeleting, startTransition] = useTransition();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   function onMutating(action: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (action === "edit") {
+      params.set("articleToEditId", article?.id);
+      router.replace(`/admin/articles/new?${params.toString()}`, {
+        scroll: false,
+      });
+    }
     if (action === "delete") {
       // optimistic delete
       startTransition(() => {
