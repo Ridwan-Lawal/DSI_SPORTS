@@ -62,7 +62,7 @@ export default function SidebarAdmin() {
 
             <main className="scrollbar-thin scrollbar-thumb-neutral-500 h-[75vh] space-y-5 overflow-y-auto px-3">
               {/* pages */}
-              <div className="section-block">
+              <div className="section-block md:hidden">
                 <p className="">pages</p>
                 <ul className="">
                   {PAGES?.map((page) => (

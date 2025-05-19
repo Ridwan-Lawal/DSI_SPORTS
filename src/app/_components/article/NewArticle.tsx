@@ -15,6 +15,9 @@ import {
   draftArticleAction,
   publishArticleAction,
 } from "@/src/app/_lib/actions/articles/create-article";
+import { editArticleAction } from "@/src/app/_lib/actions/articles/edit-delete-article";
+import { posts } from "@/src/db/schema/article";
+import { InferSelectModel } from "drizzle-orm";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
@@ -27,12 +30,22 @@ import {
 } from "react";
 import toast from "react-hot-toast";
 
-export default function NewArticle() {
+type Article = InferSelectModel<typeof posts>;
+
+export default function NewArticle({
+  articleToEdit,
+}: {
+  articleToEdit: Article | undefined;
+}) {
   const [content, setContent] = useState(() =>
-    localStorage.getItem("article-form-content")
-      ? JSON.parse(localStorage.getItem("article-form-content") || "")
-      : "",
+    articleToEdit?.content
+      ? articleToEdit?.content
+      : localStorage.getItem("article-form-content")
+        ? JSON.parse(localStorage.getItem("article-form-content") || "")
+        : "",
   );
+
+  console.log(articleToEdit);
   const { formData, setFormData } = useStoreFormDataInStorage(content);
   const { featuredImageLink, onImageUpload } = useUploadImageToCloudinary();
   const router = useRouter();
@@ -40,10 +53,12 @@ export default function NewArticle() {
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const [state, formAction, isPublishing] = useActionState(
-    publishArticleAction,
+    articleToEdit ? editArticleAction : publishArticleAction,
     null,
   );
+
   const { formErrors, inputs } = state ?? {};
+
   useEffect(() => {
     if (state) {
       if (state?.success) {
@@ -75,7 +90,7 @@ export default function NewArticle() {
           localStorage.removeItem("article-form-content");
 
           // redirect to dashboard
-          router.push("/admin/overview");
+          router.push("/admin/articles");
         } else if (data?.error) {
           toast.error(data.error);
         }
@@ -119,13 +134,15 @@ export default function NewArticle() {
           >
             Cancel
           </Button>
-          <Button
-            onClick={onDraftArticle}
-            disabled={isDrafting || isPublishing}
-            aria-disabled={isDrafting || isPublishing}
-          >
-            Save draft
-          </Button>
+          {!articleToEdit && (
+            <Button
+              onClick={onDraftArticle}
+              disabled={isDrafting || isPublishing}
+              aria-disabled={isDrafting || isPublishing}
+            >
+              Save draft
+            </Button>
+          )}
         </div>
       </header>
 
@@ -142,6 +159,14 @@ export default function NewArticle() {
                   Write your article content here
                 </p>
               </div>
+
+              {/* article id to update */}
+              <input
+                type="hidden"
+                name="articleToUpdateId"
+                value={articleToEdit?.id}
+              />
+
               {/* ==== title ====  */}
               <div className="space-y-5">
                 <Input
@@ -158,7 +183,11 @@ export default function NewArticle() {
                     onChange={(e) =>
                       setFormData((cur) => ({ ...cur, title: e.target.value }))
                     }
-                    defaultValue={(inputs?.title as string) || formData?.title}
+                    defaultValue={
+                      articleToEdit?.title ||
+                      (inputs?.title as string) ||
+                      formData?.title
+                    }
                     autoComplete="title"
                     aria-label="title"
                     aria-live="polite"
@@ -182,7 +211,9 @@ export default function NewArticle() {
                     disabled={isPublishing || isDrafting}
                     aria-disabled={isPublishing || isDrafting}
                     defaultValue={
-                      (inputs?.excerpt as string) || formData?.excerpt
+                      articleToEdit?.excerpt ||
+                      (inputs?.excerpt as string) ||
+                      formData?.excerpt
                     }
                     onChange={(e) =>
                       setFormData((cur) => ({
@@ -227,7 +258,7 @@ export default function NewArticle() {
                   {/* ==== category ====  */}
                   <input
                     type="hidden"
-                    value={formData?.category}
+                    value={articleToEdit?.category || formData?.category}
                     name="category"
                   />
                   <Input
@@ -238,7 +269,9 @@ export default function NewArticle() {
                     <Suspense fallback={<div>Loading...</div>}>
                       <Categories
                         disabled={isPublishing || isDrafting}
-                        defaultValue={formData?.category}
+                        defaultValue={
+                          articleToEdit?.category || formData?.category
+                        }
                         setFormData={setFormData}
                       />
                     </Suspense>
@@ -256,7 +289,11 @@ export default function NewArticle() {
                       id="tags"
                       disabled={isPublishing || isDrafting}
                       aria-disabled={isPublishing || isDrafting}
-                      defaultValue={(inputs?.title as string) || formData?.tags}
+                      defaultValue={
+                        articleToEdit?.tags ||
+                        (inputs?.title as string) ||
+                        formData?.tags
+                      }
                       onChange={(e) =>
                         setFormData((cur) => ({ ...cur, tags: e.target.value }))
                       }
@@ -321,7 +358,9 @@ export default function NewArticle() {
                         id="seoTitle"
                         disabled={isPublishing || isDrafting}
                         aria-disabled={isPublishing || isDrafting}
-                        defaultValue={formData?.seoTitle}
+                        defaultValue={
+                          articleToEdit?.seoTitle || formData?.seoTitle
+                        }
                         onChange={(e) =>
                           setFormData((cur) => ({
                             ...cur,
@@ -348,7 +387,10 @@ export default function NewArticle() {
                         id="seoDescription"
                         disabled={isPublishing || isDrafting}
                         aria-disabled={isPublishing || isDrafting}
-                        defaultValue={formData?.seoDescription}
+                        defaultValue={
+                          articleToEdit?.seoDescription ||
+                          formData?.seoDescription
+                        }
                         onChange={(e) =>
                           setFormData((cur) => ({
                             ...cur,
@@ -368,13 +410,23 @@ export default function NewArticle() {
             </div>
           </div>
           <div className="mt-6 flex justify-end">
-            <Button
-              disabled={isPublishing || isDrafting}
-              aria-disabled={isPublishing || isDrafting}
-              className="h-10 px-8"
-            >
-              Publish
-            </Button>
+            {articleToEdit ? (
+              <Button
+                disabled={isPublishing || isDrafting}
+                aria-disabled={isPublishing || isDrafting}
+                className="h-10 px-8"
+              >
+                Save changes
+              </Button>
+            ) : (
+              <Button
+                disabled={isPublishing || isDrafting}
+                aria-disabled={isPublishing || isDrafting}
+                className="h-10 px-8"
+              >
+                Publish
+              </Button>
+            )}
           </div>
         </form>
       </main>

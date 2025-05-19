@@ -123,6 +123,8 @@ export async function publishArticleAction(
     });
 
     revalidatePath("/admin/overview");
+    revalidatePath("/admin/articles");
+
     revalidatePath("/news");
     revalidatePath("/");
 

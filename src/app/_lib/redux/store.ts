@@ -1,9 +1,11 @@
+import articlesReducer from "@_lib/redux/features/articleSlice";
 import layoutReducer from "@_lib/redux/features/layoutSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
   reducer: {
     layout: layoutReducer,
+    articles: articlesReducer,
   },
 });
 
