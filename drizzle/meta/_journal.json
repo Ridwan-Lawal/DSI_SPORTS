@@ -85,6 +85,13 @@
       "when": 1746702204830,
       "tag": "0011_smart_sally_floyd",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1747901362324,
+      "tag": "0012_curved_chimera",
+      "breakpoints": true
     }
   ]
 }

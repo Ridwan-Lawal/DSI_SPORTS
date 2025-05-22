@@ -1,0 +1,48 @@
+import AnalyticsCard from "@/src/app/_components/overview/AnalyticsCard";
+import { getOverviewArticles } from "@/src/app/_lib/data-service/overview/articles";
+import { totalArticlesPercent } from "@/src/app/_utils/totalArticlesPercent";
+
+import { totalViewsPercent } from "@/src/app/_utils/totalViewsPercent";
+import { Newspaper, Trophy, Users, View } from "lucide-react";
+
+export default async function OverviewAnalytics() {
+  const articles = await getOverviewArticles();
+
+  const { articlePercentageBtwTwoMonth, currentMonthArticlesCount } =
+    totalArticlesPercent(articles) ?? {};
+
+  const { currentMonthViews, viewPercentageBtwTwoMonth } =
+    totalViewsPercent(articles) ?? {};
+
+  return (
+    <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <AnalyticsCard
+        title="total articles"
+        value={currentMonthArticlesCount}
+        percent={articlePercentageBtwTwoMonth}
+        Icon={Newspaper}
+      />
+
+      <AnalyticsCard
+        title="page views"
+        value={currentMonthViews}
+        percent={viewPercentageBtwTwoMonth}
+        Icon={View}
+      />
+
+      <AnalyticsCard
+        title="total vistors"
+        value={20}
+        percent={23}
+        Icon={Users}
+      />
+
+      <AnalyticsCard
+        title="upcoming matches"
+        value={20}
+        percent={23}
+        Icon={Trophy}
+      />
+    </div>
+  );
+}
