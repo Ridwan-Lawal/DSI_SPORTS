@@ -1,6 +1,5 @@
 import {
   Bolt,
-  ChartPie,
   Home,
   LayoutDashboard,
   MessageSquareText,
@@ -19,7 +18,6 @@ export const PAGES = [
 
 export const DASHBOARD = [
   { name: "overview", link: "/admin/overview", icon: LayoutDashboard },
-  { name: "analytics", link: "/admin/analytics", icon: ChartPie },
 ];
 
 export const CONTENTS = [

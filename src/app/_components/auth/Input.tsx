@@ -10,7 +10,7 @@ export default function Input({ htmlFor, children, label, error }: InputProps) {
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={htmlFor}
-        className="text-[15px] font-medium text-neutral-800 capitalize md:text-base"
+        className="text-[15px] font-medium text-neutral-800 capitalize"
       >
         {label}
       </label>

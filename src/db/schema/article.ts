@@ -1,6 +1,6 @@
 import { users } from "@/src/db/schema/auth";
 import { relations } from "drizzle-orm";
-import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { integer, pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const status = pgEnum("status", ["published", "draft"]);
 
@@ -39,6 +39,7 @@ export const posts = pgTable("posts", {
   authorId: text("authorId")
     .notNull()
     .references(() => users.id),
+  views: integer("views").default(0).notNull(),
 });
 
 export const categories = pgTable("categories", {
