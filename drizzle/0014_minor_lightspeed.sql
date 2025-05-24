@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN "socials" jsonb DEFAULT '{"X":"","whatsapp":"","instagram":""}'::jsonb;

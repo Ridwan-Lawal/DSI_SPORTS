@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   primaryKey,
@@ -22,6 +23,8 @@ export const users = pgTable("user", {
   userRole: roles("user_role").default("user"),
   password: text("password"),
   image: text("image"),
+  bio: text("bio"),
+  socials: jsonb("socials").default({ X: "", whatsapp: "", instagram: "" }),
 });
 
 export const accounts = pgTable(
