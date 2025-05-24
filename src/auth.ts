@@ -5,10 +5,18 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth, { type DefaultSession } from "next-auth";
 
 type userRole = "admin" | "user";
+type Socials = {
+  X: string;
+  whatsapp: string;
+  instagram: string;
+};
 declare module "next-auth" {
   interface Session {
     user: {
       role: userRole;
+      bio: string;
+      avatar: string;
+      socials: Socials;
     } & DefaultSession["user"];
   }
 }
@@ -35,6 +43,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token?.sub;
         session.user.role = token?.role as userRole;
       }
+      if (token?.sub) {
+        session.user.bio = token?.bio as string;
+        session.user.avatar = token?.picture as string;
+        session.user.socials = token?.socials as Socials;
+      }
+
+      if (token?.sub && token?.email) {
+        session.user.email = token?.email;
+      }
 
       return session;
     },
@@ -45,6 +62,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (existingUser) {
           token.role = existingUser?.userRole;
+          token.bio = existingUser?.bio;
+          token.picture = existingUser?.image;
+          token.socials = existingUser?.socials;
+          token.email = existingUser?.email;
         }
       }
 

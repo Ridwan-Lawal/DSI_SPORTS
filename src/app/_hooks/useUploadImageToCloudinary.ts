@@ -19,13 +19,10 @@ export function useUploadImageToCloudinary() {
     try {
       const cloudUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL!;
       console.log(cloudUrl, "env");
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/daetxhtss/image/upload",
-        {
-          method: "POST",
-          body: form,
-        },
-      );
+      const response = await fetch(cloudUrl, {
+        method: "POST",
+        body: form,
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

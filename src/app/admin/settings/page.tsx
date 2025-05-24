@@ -3,13 +3,16 @@ import PasswordSettings from "@/src/app/_components/settings/PasswordSettings";
 import ProfileSettings from "@/src/app/_components/settings/ProfileSettings";
 import SettingsHeader from "@/src/app/_components/settings/SettingsHeader";
 import SocialMediaSettings from "@/src/app/_components/settings/SocialMediaSettings";
+import { auth } from "@/src/auth";
 import { Metadata } from "next";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Settings",
 };
 
-export default function Page() {
+export default async function Page() {
+  const session = await auth();
   return (
     <div className="min-h-screen bg-[#fafafa] px-4 pt-4 pb-8 lg:px-6">
       <SettingsHeader />
@@ -22,9 +25,12 @@ export default function Page() {
             Manage your personal information and account settings.
           </p>
         </div>
-        <ProfileSettings />
-        <SocialMediaSettings />
-        <EmailSettings />
+        <SessionProvider session={session}>
+          <ProfileSettings />
+          <SocialMediaSettings />
+          <EmailSettings />
+        </SessionProvider>
+
         <PasswordSettings />
       </div>
     </div>
