@@ -1,9 +1,3 @@
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Teams",
-};
-
 export default function Page() {
   return (
     <div className="flex h-[50vh] items-center justify-center">

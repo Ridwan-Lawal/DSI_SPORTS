@@ -1,20 +1,25 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import logoNoBg from "@/public/svg/logo-grayscale.svg";
+import { useGetUser } from "@/src/app/_hooks/useGetUser";
 import { useSidebar } from "@/src/app/_hooks/useSidebar";
+import { signOutAction } from "@/src/app/_lib/actions/auth/logout";
 import {
   getLayout,
   onToggleSidebar,
 } from "@/src/app/_lib/redux/features/layoutSlice";
 import { useAppDispatch, useAppSelector } from "@/src/app/_lib/redux/hooks";
 import { CONTENTS, DASHBOARD, PAGES, TEAMS } from "@/src/app/_utils/constant";
-import { X } from "lucide-react";
+import { LogOut, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function SidebarAdmin() {
+  const { user } = useGetUser();
+  console.log(user, "yeesss");
   const pathname = usePathname();
   const { mobileSidebarIsOpen } = useAppSelector(getLayout);
   const dispatch = useAppDispatch();
@@ -62,7 +67,7 @@ export default function SidebarAdmin() {
 
             <main className="scrollbar-thin scrollbar-thumb-neutral-500 h-[75vh] space-y-5 overflow-y-auto px-3">
               {/* pages */}
-              <div className="section-block md:hidden">
+              <div className="section-block sm:hidden">
                 <p className="">pages</p>
                 <ul className="">
                   {PAGES?.map((page) => (
@@ -159,16 +164,41 @@ export default function SidebarAdmin() {
             </main>
 
             {/* footer */}
-            <footer className="flex h-[12vh] items-center gap-3 border-t border-neutral-200 px-3">
-              <div className="flex size-10 items-center justify-center rounded-full border bg-neutral-100">
-                <p className="text-sm font-medium uppercase">dsi</p>
+            <footer className="flex h-[12vh] items-center justify-between gap-4 border-t border-neutral-200 px-3">
+              <div className="flex items-center gap-3">
+                <div className="relative size-10 overflow-hidden rounded-full">
+                  {user?.avatar ? (
+                    <Image
+                      src={user?.avatar}
+                      alt="avatar"
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <Skeleton className="size-10" />
+                  )}
+                </div>
+                <div className="">
+                  {user?.name ? (
+                    <p className="text-grey-800 text-[14.5px] font-medium">
+                      {user?.name}
+                    </p>
+                  ) : (
+                    <Skeleton className="h-3 w-20" />
+                  )}
+                  {user?.email ? (
+                    <p className="text-grey-800 text-[11.5px] text-neutral-400">
+                      {user?.email}
+                    </p>
+                  ) : (
+                    <Skeleton className="mt-2 h-3 w-28" />
+                  )}
+                </div>
               </div>
-              <div className="">
-                <p className="text-grey-800 text-[14.5px] font-medium">DSI</p>
-                <p className="text-[13px] text-neutral-500">
-                  official@dsi-sports.com
-                </p>
-              </div>
+
+              <button onClick={() => signOutAction()}>
+                <LogOut className="size-[19px] text-neutral-700" />
+              </button>
             </footer>
           </div>
         </motion.div>

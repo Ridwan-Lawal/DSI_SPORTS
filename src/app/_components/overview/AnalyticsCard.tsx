@@ -4,7 +4,7 @@ import { ForwardRefExoticComponent, RefAttributes } from "react";
 interface AnalyticsCardProps {
   title: string;
   value: number | undefined;
-  percent: number | undefined;
+  percent?: number | undefined;
   Icon: ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
@@ -26,18 +26,20 @@ export default function AnalyticsCard({
 
         <h5 className="mt-1 text-neutral-800 md:hidden">{value ?? 0}</h5>
         <h4 className="mt-1 hidden text-neutral-800 md:block">{value ?? 0}</h4>
-        <p className="flex items-center gap-1 text-[12.5px] text-neutral-500">
-          {percent && percent >= 1 ? (
-            <span className="flex items-center gap-1 text-green-500">
-              <TrendingUp className="size-4 text-green-500" /> +{percent}%
-            </span>
-          ) : (
-            <span className="flex items-center gap-1 text-red-500">
-              <TrendingDown className="size-4 text-red-500" /> +{percent}
-            </span>
-          )}{" "}
-          from last month
-        </p>
+        {percent !== undefined && (
+          <p className="flex items-center gap-1 text-[12.5px] text-neutral-500">
+            {percent && percent >= 1 ? (
+              <span className="flex items-center gap-1 text-green-500">
+                <TrendingUp className="size-4 text-green-500" /> +{percent}%
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 text-red-500">
+                <TrendingDown className="size-4 text-red-500" /> +{percent}
+              </span>
+            )}{" "}
+            from last month
+          </p>
+        )}
       </div>
     </div>
   );

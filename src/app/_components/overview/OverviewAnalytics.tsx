@@ -1,4 +1,5 @@
 import AnalyticsCard from "@/src/app/_components/overview/AnalyticsCard";
+import { getMatches } from "@/src/app/_lib/data-service/live-scores/matches";
 import { getOverviewArticles } from "@/src/app/_lib/data-service/overview/articles";
 import { totalArticlesPercent } from "@/src/app/_utils/totalArticlesPercent";
 
@@ -6,7 +7,10 @@ import { totalViewsPercent } from "@/src/app/_utils/totalViewsPercent";
 import { Newspaper, Trophy, Users, View } from "lucide-react";
 
 export default async function OverviewAnalytics() {
-  const articles = await getOverviewArticles();
+  const [matchesData, articles] = await Promise.all([
+    getMatches(),
+    getOverviewArticles(),
+  ]);
 
   const { articlePercentageBtwTwoMonth, currentMonthArticlesCount } =
     totalArticlesPercent(articles) ?? {};
@@ -39,8 +43,7 @@ export default async function OverviewAnalytics() {
 
       <AnalyticsCard
         title="upcoming matches"
-        value={20}
-        percent={23}
+        value={matchesData?.matches?.length}
         Icon={Trophy}
       />
     </div>

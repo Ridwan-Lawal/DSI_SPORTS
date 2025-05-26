@@ -1,12 +1,8 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, PenLine } from "lucide-react";
+import { PenLine } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function OverviewHeader() {
-  const router = useRouter();
   const date = new Date().getHours();
   let timeOfTheDay;
 
@@ -22,10 +18,6 @@ export default function OverviewHeader() {
 
   return (
     <>
-      <button className="flex items-center gap-2" onClick={() => router.back()}>
-        <ArrowLeft className="size-4" />{" "}
-        <span className="text-[15px] hover:underline">Back</span>
-      </button>
       <header className="mt-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <h4>Dashboard</h4>
@@ -45,3 +37,5 @@ export default function OverviewHeader() {
     </>
   );
 }
+
+// starts with the teams page
