@@ -1,17 +1,26 @@
 import NavBarAdmin from "@/src/app/_components/reusables/NavBar";
 import SidebarAdmin from "@/src/app/_components/reusables/SidebarAdmin";
+import { auth } from "@/src/auth";
+import { SessionProvider } from "next-auth/react";
 import React from "react";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth();
   return (
-    <div className="flex w-full border-4 border-green-500">
+    <div className="flex w-full">
       {/* side bar */}
       <div className="shrink-0 md:w-[260px]">
-        <SidebarAdmin />
+        <SessionProvider session={session}>
+          <SidebarAdmin />
+        </SessionProvider>
       </div>
 
       {/* nav and content */}
-      <div className="no-scrollbar h-screen w-full min-w-0 overflow-auto border border-blue-500 md:flex-1">
+      <div className="no-scrollbar h-screen w-full min-w-0 overflow-auto md:flex-1">
         <NavBarAdmin />
         <div>{children}</div>
       </div>

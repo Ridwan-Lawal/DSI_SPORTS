@@ -2,6 +2,10 @@ import Articles from "@/src/app/_components/article/Articles";
 import ArticlesFilter from "@/src/app/_components/article/ArticlesFilter";
 import ArticlesPageHeader from "@/src/app/_components/article/ArticlesPageHeader";
 import ArticlesPagination from "@/src/app/_components/article/ArticlesPagination";
+import {
+  ArticlesFooterSkeletion,
+  ArticlesSkeleton,
+} from "@/src/app/_components/skeletons/articles-skeleton";
 
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -29,11 +33,14 @@ export default async function Page({
       <ArticlesPageHeader />
       <ArticlesFilter />
 
-      <Suspense fallback={<div>Loading...</div>} key={suspenseKeyArticles}>
+      <Suspense fallback={<ArticlesSkeleton />} key={suspenseKeyArticles}>
         <Articles queries={queries} />
       </Suspense>
 
-      <Suspense fallback={<div>Loading...</div>} key={suspenseKeyPagination}>
+      <Suspense
+        fallback={<ArticlesFooterSkeletion />}
+        key={suspenseKeyPagination}
+      >
         <ArticlesPagination queries={queries} />
       </Suspense>
     </div>

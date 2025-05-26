@@ -6,6 +6,7 @@ import Categories from "@/src/app/_components/article/Categories";
 import { Input as ShadInput } from "@/components/ui/input";
 import Tiptap from "@/src/app/_components/article/editor/TipTap";
 import Input from "@/src/app/_components/auth/Input";
+import { CategorySkeleton } from "@/src/app/_components/skeletons/articles-skeleton";
 import {
   initialState,
   useStoreFormDataInStorage,
@@ -266,7 +267,7 @@ export default function NewArticle({
                     label="Category"
                     error={formErrors?.category?.at(0)}
                   >
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<CategorySkeleton />}>
                       <Categories
                         disabled={isPublishing || isDrafting}
                         defaultValue={
