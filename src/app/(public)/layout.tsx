@@ -1,3 +1,4 @@
+import Footer from "@/src/app/_components/public/Footer";
 import NavBar from "@/src/app/_components/public/NavBar";
 import { auth } from "@/src/auth";
 import { SessionProvider } from "next-auth/react";
@@ -16,7 +17,8 @@ export default async function Layout({
         </SessionProvider>
       </header>
 
-      <main>{children}</main>
+      <main className="">{children}</main>
+      <Footer />
     </div>
   );
 }
