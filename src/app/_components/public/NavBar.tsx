@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import logo from "@/public/svg/logo-grayscale-inverted.svg";
+import NavMenu from "@/src/app/_components/public/NavMenu";
 import RoleGate from "@/src/app/_components/public/RoleGate";
 import { X } from "lucide-react";
 import Image from "next/image";
@@ -17,7 +18,9 @@ export default function NavBar() {
   const onToggleNav = () => setNavIsOpen((cur) => !cur);
 
   return (
-    <nav className="admin-nav flex w-full flex-wrap items-center justify-between border-b border-neutral-200 px-6 py-2 md:py-[15px]">
+    <nav
+      className={`admin-nav relative flex w-full flex-wrap items-center justify-between border-b border-neutral-200 px-6 py-2 md:py-[15px]`}
+    >
       <div className="relative size-10">
         <Image
           src={logo}
@@ -30,7 +33,10 @@ export default function NavBar() {
       </div>
 
       <div className="sm:hidden">
-        <button onClick={onToggleNav}>
+        <button
+          onClick={onToggleNav}
+          className={`${navIsOpen ? "rotate-180" : "rotate-0"} transition-transform`}
+        >
           {navIsOpen ? (
             <X className="size-5" />
           ) : (
@@ -39,25 +45,12 @@ export default function NavBar() {
         </button>
       </div>
 
-      <div className="top-0 left-0 mt-5 flex w-full flex-col items-center gap-10 border-t border-neutral-200 bg-white py-10 sm:flex-row sm:border-0">
-        <ul className="flex flex-col sm:flex-row">
-          {[
-            { name: "home", link: "/" },
-            { name: "news", link: "/news" },
-          ]?.map((page) => (
-            <Link href={page?.link} key={page?.name}>
-              <div className="group">
-                <li
-                  className={`capitalize ${pathname === page?.link && "text-neutral-900"} transition-all`}
-                >
-                  {page?.name}
-                </li>
-                <div className="w-0 rounded-md border-[1.5px] border-b opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100" />
-              </div>
-            </Link>
-          ))}
-        </ul>
+      <NavMenu visibility="hidden sm:flex" />
 
+      <div
+        className={`flex w-full flex-col items-center border-neutral-200 bg-white sm:flex-row sm:border-0 ${navIsOpen ? "mt-5 h-fit gap-10 border-t py-10 shadow-lg shadow-neutral-300" : "h-0 gap-0 py-0 sm:h-fit sm:gap-10"} absolute top-9 left-0 z-30 overflow-hidden transition-all duration-100 sm:static sm:w-fit`}
+      >
+        <NavMenu visibility="sm:hidden" />
         <RoleGate>
           <Link href="/admin/overview">
             <Button>Admin Dashboard</Button>

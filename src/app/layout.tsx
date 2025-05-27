@@ -23,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto?.className} antialiased`}>
+      <body
+        className={`${roboto?.className} scrollbar-thin overflow-y-scroll antialiased`}
+      >
         <QueryProviders>
           <StoreProvider>
             <main>{children}</main>
