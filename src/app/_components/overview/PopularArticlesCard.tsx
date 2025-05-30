@@ -18,7 +18,7 @@ export default async function PopularArticlesCard({
   const { title, slug, views } = article ?? {};
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-5">
         <p className="font-medium">{index + 1}.</p>
         <div>

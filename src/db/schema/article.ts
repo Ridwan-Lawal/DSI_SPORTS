@@ -61,11 +61,6 @@ export const postRelations = relations(posts, ({ one }) => {
       fields: [posts.authorId],
       references: [users?.id],
     }),
-  };
-});
-
-export const postCategoryRelations = relations(posts, ({ one }) => {
-  return {
     category: one(categories, {
       fields: [posts.category],
       references: [categories.category],

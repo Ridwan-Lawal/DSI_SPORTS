@@ -13,7 +13,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   const { id, title, publishedAt } = article ?? {};
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       <div>
         <p className="text-[15px] font-medium">{title}</p>
         <p className="text-[15px] text-neutral-500">

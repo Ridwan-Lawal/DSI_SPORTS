@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NavMenu({ visibility }: { visibility: string }) {
+interface NavMenuProps {
+  visibility: string;
+  onCloseMobileNav: () => void;
+}
+
+export default function NavMenu({
+  visibility,
+  onCloseMobileNav,
+}: NavMenuProps) {
   const pathname = usePathname();
   return (
     <ul
@@ -13,7 +21,7 @@ export default function NavMenu({ visibility }: { visibility: string }) {
         { name: "home", link: "/" },
         { name: "news", link: "/news" },
       ]?.map((page) => (
-        <Link href={page?.link} key={page?.name}>
+        <Link href={page?.link} key={page?.name} onClick={onCloseMobileNav}>
           <div className="group">
             <li
               className={`capitalize ${pathname === page?.link && "text-neutral-900"} text-base font-semibold transition-all sm:text-[15px] sm:font-medium`}
