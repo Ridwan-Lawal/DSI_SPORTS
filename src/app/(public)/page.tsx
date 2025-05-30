@@ -6,6 +6,7 @@ import NewsByCategories from "@/src/app/_components/public/home/NewsByCategories
 import PremierLeagueNews from "@/src/app/_components/public/home/PremierLeague";
 import SocialsMediaDetails from "@/src/app/_components/public/home/SocialsMediaDetails";
 import TransferNews from "@/src/app/_components/public/home/TransferNews";
+import { Suspense } from "react";
 
 export const top = {
   image: PremierLeague,
@@ -37,10 +38,21 @@ export default function Page() {
   return (
     <div className="border-2 border-green-500 bg-slate-50 py-12">
       <div className="space-y-12 bg-white px-4 py-10 sm:px-6 md:space-y-14 md:px-8">
-        <LatestNews />
-        <TransferNews />
-        <PremierLeagueNews />
-        <NewsByCategories />
+        <Suspense fallback={<div>Loading...</div>}>
+          <LatestNews />
+        </Suspense>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <TransferNews />
+        </Suspense>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <PremierLeagueNews />
+        </Suspense>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <NewsByCategories />
+        </Suspense>
       </div>
 
       {/* follow dsi */}

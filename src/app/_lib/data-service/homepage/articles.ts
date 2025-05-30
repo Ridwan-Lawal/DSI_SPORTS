@@ -1,0 +1,116 @@
+import { db } from "@/src/db";
+import { categories, posts } from "@/src/db/schema/article";
+import { and, desc, eq } from "drizzle-orm";
+import { cache } from "react";
+
+export const getArticlesCategory = cache(async function () {
+  try {
+    const articleCategories = await db
+      .select({ id: categories?.id, category: categories?.category })
+      .from(categories);
+
+    return articleCategories;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error?.message);
+    }
+  }
+});
+
+export const getHomeArticles = cache(async function (category?: string) {
+  try {
+    // let dbQuery = db.with().select().from(posts);
+
+    console.log(category);
+    let dbQuery;
+
+    if (!category) {
+      dbQuery = db.query.posts.findMany({
+        columns: {
+          id: true,
+          slug: true,
+          publishedAt: true,
+          featuredImage: true,
+          title: true,
+          category: true,
+          excerpt: true,
+          authorId: true,
+        },
+        where: eq(posts.status, "published"),
+        orderBy: desc(posts?.publishedAt),
+        with: {
+          author: {
+            columns: {
+              name: true,
+              image: true,
+            },
+          },
+        },
+      });
+    }
+
+    if (category === "premier league") {
+      dbQuery = db.query.posts.findMany({
+        columns: {
+          id: true,
+          slug: true,
+          publishedAt: true,
+          featuredImage: true,
+          title: true,
+          category: true,
+          excerpt: true,
+          authorId: true,
+        },
+        where: and(
+          eq(posts.status, "published"),
+          eq(posts.category, "premier league"),
+        ),
+        orderBy: desc(posts.publishedAt),
+        with: {
+          author: {
+            columns: {
+              name: true,
+              image: true,
+            },
+          },
+        },
+      });
+    }
+
+    if (category === "transfer") {
+      dbQuery = db.query.posts.findMany({
+        columns: {
+          id: true,
+          slug: true,
+          publishedAt: true,
+          featuredImage: true,
+          title: true,
+          category: true,
+          excerpt: true,
+          authorId: true,
+        },
+        where: and(
+          eq(posts.status, "published"),
+          eq(posts.category, "transfer"),
+        ),
+        orderBy: desc(posts?.publishedAt),
+        with: {
+          author: {
+            columns: {
+              name: true,
+              image: true,
+            },
+          },
+        },
+      });
+    }
+
+    const articles = await dbQuery;
+    console.log(articles);
+    return articles;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error?.message);
+    }
+  }
+});

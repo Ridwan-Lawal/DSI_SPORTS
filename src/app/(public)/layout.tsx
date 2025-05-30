@@ -10,14 +10,14 @@ export default async function Layout({
 }) {
   const session = await auth();
   return (
-    <div>
+    <div className="">
       <header>
         <SessionProvider session={session}>
           <NavBar />
         </SessionProvider>
       </header>
 
-      <main className="">{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
