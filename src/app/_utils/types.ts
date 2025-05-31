@@ -41,3 +41,9 @@ export interface OtherArticleProp {
       }
     | undefined;
 }
+
+export interface QueryType {
+  query: {
+    category?: string;
+  };
+}

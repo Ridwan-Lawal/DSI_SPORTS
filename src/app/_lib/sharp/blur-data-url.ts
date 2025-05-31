@@ -11,9 +11,5 @@ export async function getImageBlurDataUrl(imageUrl: string | null | undefined) {
       console.error("Error generating base64:", error);
       return null;
     }
-  } else {
-    throw new Error(
-      "Cannot create a blur data url for image. No available image",
-    );
   }
 }
