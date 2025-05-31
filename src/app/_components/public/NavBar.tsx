@@ -50,47 +50,51 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`admin-nav user flex w-full flex-wrap items-center justify-between px-6 py-2 transition-all md:py-[15px] ${navIsFixed ? "fixed border-b border-white/20 bg-white/80 shadow-lg backdrop-blur-md" : "relative bg-transparent"} z-40`}
+      className={`${navIsFixed ? "fixed border-b border-white/20 bg-white/80 shadow-lg backdrop-blur-md" : "relative bg-transparent"} z-40 w-full`}
     >
-      <div className="relative size-10">
-        <Image
-          src={logo}
-          alt="logo"
-          quality={100}
-          priority={true}
-          fill
-          className="object-contain"
-        />
-      </div>
-
-      <div className="sm:hidden">
-        <button
-          onClick={onToggleNav}
-          className={`${navIsOpen ? "rotate-180" : "rotate-0"} transition-transform`}
-        >
-          {navIsOpen ? (
-            <X className="size-5" />
-          ) : (
-            <RiMenu4Fill className="text-xl" />
-          )}
-        </button>
-      </div>
-
-      <NavMenu
-        visibility="hidden sm:flex"
-        onCloseMobileNav={closeNavOnMobile}
-      />
-
       <div
-        id="user-nav"
-        className={`flex w-full flex-col items-center border-neutral-200 bg-white sm:flex-row sm:border-0 ${navIsOpen ? "mt-5 h-fit gap-10 border-t py-10 shadow-md shadow-neutral-300" : "h-0 gap-0 py-0 sm:h-fit sm:gap-10"} absolute top-9 left-0 z-30 overflow-hidden transition-all duration-100 sm:static sm:w-fit`}
+        className={`admin-nav user mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between px-6 py-2 transition-all md:py-[15px]`}
       >
-        <NavMenu visibility="sm:hidden" onCloseMobileNav={closeNavOnMobile} />
-        <RoleGate>
-          <Link href="/admin/overview">
-            <Button>Admin Dashboard</Button>
-          </Link>
-        </RoleGate>
+        <div className="relative size-10">
+          <Image
+            src={logo}
+            alt="logo"
+            quality={100}
+            priority={true}
+            fill
+            className="object-contain"
+          />
+        </div>
+
+        <div className="sm:hidden">
+          <button
+            onClick={onToggleNav}
+            className={`${navIsOpen ? "rotate-180" : "rotate-0"} transition-transform`}
+          >
+            {navIsOpen ? (
+              <X className="size-5" />
+            ) : (
+              <RiMenu4Fill className="text-xl" />
+            )}
+          </button>
+        </div>
+
+        <NavMenu
+          visibility="hidden sm:flex"
+          onCloseMobileNav={closeNavOnMobile}
+        />
+
+        <div
+          id="user-nav"
+          className={`flex w-full flex-col items-center border-neutral-200 bg-white sm:flex-row sm:border-0 ${navIsOpen ? "mt-5 h-fit gap-10 border-t py-10 shadow-md shadow-neutral-300" : "h-0 gap-0 py-0 sm:h-fit sm:gap-10"} absolute top-9 left-0 z-30 overflow-hidden transition-all duration-100 sm:static sm:w-fit`}
+        >
+          <NavMenu visibility="sm:hidden" onCloseMobileNav={closeNavOnMobile} />
+          <RoleGate>
+            <Link href="/admin/overview">
+              <Button>Admin Dashboard</Button>
+            </Link>
+          </RoleGate>
+        </div>
       </div>
     </nav>
   );

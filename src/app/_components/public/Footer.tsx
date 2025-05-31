@@ -37,40 +37,42 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <div className="min-h-[200px] bg-neutral-800 px-4 pt-10 pb-5 sm:px-6 md:px-8">
-      <div className="relative size-10">
-        <Image
-          src={logo}
-          alt=""
-          fill
-          className="object-contain"
-          quality={100}
-        />
+    <footer className="min-h-[200px] bg-neutral-800 px-4 pt-10 pb-5 sm:px-6 md:px-8">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="relative size-10">
+          <Image
+            src={logo}
+            alt=""
+            fill
+            className="object-contain"
+            quality={100}
+          />
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3">
+          {FOOTER_LINKS?.map((section, id) => (
+            <div key={id} className="space-y-3">
+              <h6 className={`${bebasNeue?.className} text-white`}>
+                {section?.heading}
+              </h6>
+
+              <ul className="flex w-fit flex-col gap-2">
+                {section?.links?.map((linkSet, id) => (
+                  <Link key={id} href={linkSet?.link}>
+                    <li className="w-fit text-[12px] text-neutral-200 capitalize hover:text-white">
+                      {linkSet?.name}
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-12 flex items-center justify-center text-xs font-medium text-white">
+          Copyright &copy; {new Date().getFullYear()} DSI Football
+        </p>
       </div>
-
-      <div className="mt-8 grid grid-cols-2 sm:grid-cols-3">
-        {FOOTER_LINKS?.map((section, id) => (
-          <div key={id} className="space-y-3">
-            <h6 className={`${bebasNeue?.className} text-white`}>
-              {section?.heading}
-            </h6>
-
-            <ul className="flex w-fit flex-col gap-2">
-              {section?.links?.map((linkSet, id) => (
-                <Link key={id} href={linkSet?.link}>
-                  <li className="w-fit text-[12px] text-neutral-200 capitalize hover:text-white">
-                    {linkSet?.name}
-                  </li>
-                </Link>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-12 flex items-center justify-center text-xs font-medium text-white">
-        Copyright &copy; {new Date().getFullYear()} DSI Football
-      </p>
-    </div>
+    </footer>
   );
 }

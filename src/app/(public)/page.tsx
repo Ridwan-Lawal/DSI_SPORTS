@@ -36,27 +36,29 @@ export const others = Array.from({ length: 9 }, (_, i) => i + 1)?.map(() => ({
 
 export default function Page() {
   return (
-    <div className="border-2 border-green-500 bg-slate-50 py-12">
-      <div className="space-y-12 bg-white px-4 py-10 sm:px-6 md:space-y-14 md:px-8">
-        <Suspense fallback={<div>Loading...</div>}>
-          <LatestNews />
-        </Suspense>
+    <div className="bg-slate-50">
+      <div className="mx-auto max-w-[1440px] border-2 border-green-500 py-12">
+        <div className="space-y-12 bg-white px-4 py-10 sm:px-6 md:space-y-14 md:px-8">
+          <Suspense fallback={<div>Loading...</div>}>
+            <LatestNews />
+          </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <TransferNews />
-        </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <TransferNews />
+          </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <PremierLeagueNews />
-        </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <PremierLeagueNews />
+          </Suspense>
 
-        <Suspense fallback={<div>Loading...</div>}>
-          <NewsByCategories />
-        </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <NewsByCategories />
+          </Suspense>
+        </div>
+
+        {/* follow dsi */}
+        <SocialsMediaDetails />
       </div>
-
-      {/* follow dsi */}
-      <SocialsMediaDetails />
     </div>
   );
 }
