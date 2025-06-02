@@ -49,7 +49,7 @@ export default function Footer() {
           />
         </div>
 
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3">
           {FOOTER_LINKS?.map((section, id) => (
             <div key={id} className="space-y-3">
               <h6 className={`${bebasNeue?.className} text-white`}>

@@ -125,6 +125,11 @@
   .password-field-focus {
     @apply ring-2 ring-neutral-300 ring-offset-2 outline-none;
   }
+
+  /* --=== news ====== */
+  .pagination-button {
+    @apply w-full py-3 text-base hover:bg-neutral-800 hover:text-white;
+  }
 }
 
 @layer utilities {

@@ -1,16 +1,28 @@
 import FeaturedNews from "@/src/app/_components/public/news/FeaturedNews";
+import NewsPagination from "@/src/app/_components/public/news/NewsPagination";
 import OtherNewsPagePosts from "@/src/app/_components/public/news/OtherNewsPagePost";
-import { getNews } from "@/src/app/_lib/data-service/news/news";
+import {
+  getNews,
+  getPostsCountByCategory,
+} from "@/src/app/_lib/data-service/news/news";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { QueryType } from "@/src/app/_utils/types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function NewsByCategory({ query }: QueryType) {
-  const newsArticles = await getNews(query?.category);
+  const [newsArticles, newsCount] = await Promise.all([
+    await getNews(query?.category, query?.page ?? "1"),
+    await getPostsCountByCategory(query?.category),
+  ]);
+
+  console.log(newsArticles, "articlesss");
 
   const featuredNewsData = newsArticles?.at(0);
 
   const otherNewsData = newsArticles?.slice(1);
+
+  console.log(newsCount, "newwsss count");
 
   return (
     <div className="mt-5 space-y-6">
@@ -33,7 +45,7 @@ export default async function NewsByCategory({ query }: QueryType) {
             </div>
           )}
         </div>
-        <p className="text-sm text-neutral-500">
+        <p className="items-center justify-center text-sm text-neutral-500">
           The hottest news from{" "}
           {query?.category ? (
             <span className="capitalize">{query?.category}</span>
@@ -53,17 +65,21 @@ export default async function NewsByCategory({ query }: QueryType) {
           {/* grid */}
 
           {otherNewsData?.map((news) => (
-            <OtherNewsPagePosts key={news?.id} news={news} />
+            <Link href={`/news/${news?.slug}`} key={news?.id}>
+              <OtherNewsPagePosts news={news} />
+            </Link>
           ))}
         </div>
       ) : (
-        <div className="flex items-center justify-center">
+        <div className="flex h-[100px] items-center justify-center">
           <h6 className={`${bebasNeue?.className}`}>
             No available news for this category, please browse through other
             categories.
           </h6>
         </div>
       )}
+
+      <NewsPagination newsCount={newsCount?.at(0)?.count} />
     </div>
   );
 }

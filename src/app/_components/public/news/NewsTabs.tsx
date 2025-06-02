@@ -7,17 +7,16 @@ import { Suspense } from "react";
 
 export default async function NewsTabs({ query }: QueryType) {
   const articleCategories = await getArticlesCategory();
+  const suspenseKey = `${query?.category} -${query?.page}`;
 
-  console.log(query?.category);
   return (
     <div className="">
-      <Tabs
-        defaultValue={query?.category ?? "all"}
-        className="no-scrollbar h-full w-full overflow-auto rounded-lg"
-      >
-        <NewsTabLists articleCategories={articleCategories} />
+      <Tabs defaultValue={query?.category ?? "all"}>
+        <div className="no-scrollbar 0 h-full w-full overflow-auto rounded-lg">
+          <NewsTabLists articleCategories={articleCategories} />
+        </div>
 
-        <Suspense fallback={<div>Loading...</div>} key={query?.category}>
+        <Suspense fallback={<div>Loading...</div>} key={suspenseKey}>
           <NewsByCategory query={query} />
         </Suspense>
       </Tabs>
