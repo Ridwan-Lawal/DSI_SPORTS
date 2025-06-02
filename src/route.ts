@@ -2,7 +2,8 @@
  * This routes are accessible by everyone
  * @type {string[]}
  */
-export const publicRoutes = ["/", "/news"];
+export const publicRoutes = ["/news"];
+export const publicHomePage = ["/"];
 
 /**
  * This prefix is for auth api routes

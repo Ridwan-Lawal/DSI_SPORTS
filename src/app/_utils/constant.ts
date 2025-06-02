@@ -10,6 +10,9 @@ import {
 } from "lucide-react";
 import { FaInstagram, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
+// news per page
+export const NEWS_PER_POST = 3;
+
 export const SOCIALS = [
   {
     icon: FaXTwitter,

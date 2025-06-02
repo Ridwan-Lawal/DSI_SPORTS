@@ -1,5 +1,10 @@
 import { authConfig } from "@/src/auth.config";
-import { authApiPrefix, authRoutes, publicRoutes } from "@/src/route";
+import {
+  authApiPrefix,
+  authRoutes,
+  publicHomePage,
+  publicRoutes,
+} from "@/src/route";
 import NextAuth from "next-auth";
 
 const { auth } = NextAuth(authConfig);
@@ -11,7 +16,9 @@ export default auth((req) => {
 
   const currentPath = req.nextUrl.pathname;
 
-  const isPublicRoute = publicRoutes.includes(currentPath);
+  const isPublicRoute =
+    publicHomePage.includes(currentPath) ||
+    publicRoutes.some((route) => currentPath.startsWith(route));
   const isApiAuthRoute = currentPath.startsWith(authApiPrefix);
   const isAdminRoute = currentPath.startsWith("/admin");
   const isAuthRoute = authRoutes.includes(currentPath);

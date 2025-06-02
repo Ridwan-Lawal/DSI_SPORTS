@@ -45,5 +45,6 @@ export interface OtherArticleProp {
 export interface QueryType {
   query: {
     category?: string;
+    page?: string;
   };
 }

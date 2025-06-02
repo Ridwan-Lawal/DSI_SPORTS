@@ -20,11 +20,20 @@ export default function NewsTabLists({ articleCategories }: NewsTabListsProps) {
   function onSelectNewsCategory(category: string) {
     const params = new URLSearchParams(searchParams.toString());
 
+    // clear or reset the page number for each page
+
+    params.delete("page");
     if (category !== "all") {
       params.set("category", category);
     } else {
       params.delete("category");
     }
+
+    console.log(
+      pathname,
+      params.toString(),
+      `${pathname}?${params.toString()}`,
+    );
 
     router.replace(`${pathname}?${params.toString()}`, {
       scroll: false,
