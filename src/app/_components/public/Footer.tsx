@@ -37,7 +37,7 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="min-h-[200px] bg-neutral-800 px-4 pt-10 pb-5 sm:px-6 md:px-8">
+    <footer className="bottom-0 min-h-[200px] w-full bg-neutral-800 px-4 pt-10 pb-5 sm:px-6 md:px-8">
       <div className="mx-auto max-w-[1440px]">
         <div className="relative size-10">
           <Image

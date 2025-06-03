@@ -7,3 +7,14 @@ export function formatArticleDate(publishedAt: Date | null | undefined) {
     });
   }
 }
+
+export function formatDateForPostPage(publishedAt: Date | null | undefined) {
+  if (publishedAt) {
+    const formatDate = new Intl.DateTimeFormat("en-GB", {
+      dateStyle: "medium",
+      timeStyle: "long",
+    }).format(publishedAt);
+
+    return formatDate;
+  }
+}
