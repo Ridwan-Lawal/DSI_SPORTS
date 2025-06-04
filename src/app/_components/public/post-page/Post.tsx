@@ -1,11 +1,13 @@
 import Comments from "@/src/app/_components/public/post-page/Comments";
 import Content from "@/src/app/_components/public/post-page/Content";
 import MostRecentArticles from "@/src/app/_components/public/post-page/MostRecentArticles";
+import SharePostButton from "@/src/app/_components/public/post-page/SharePostButton";
+import { storeViewsAction } from "@/src/app/_lib/actions/public/posts";
 import { getArticleBySlug } from "@/src/app/_lib/data-service/news/posts";
 import { getImageBlurDataUrl } from "@/src/app/_lib/sharp/blur-data-url";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { formatDateForPostPage } from "@/src/app/_utils/date";
-import { Dot, Share } from "lucide-react";
+import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -18,6 +20,10 @@ export default async function Post({ slug }: { slug: string }) {
     getImageBlurDataUrl(featuredImage),
     getImageBlurDataUrl(author?.image),
   ]);
+
+  setTimeout(async () => {
+    await storeViewsAction(slug);
+  }, 10000);
 
   return (
     <div>
@@ -66,7 +72,7 @@ export default async function Post({ slug }: { slug: string }) {
               <p className="text-sm">{formatDateForPostPage(publishedAt)}</p>
             </div>
 
-            <Share className="size-5 cursor-pointer" />
+            <SharePostButton slug={slug} />
           </div>
 
           {/* title */}
@@ -79,7 +85,7 @@ export default async function Post({ slug }: { slug: string }) {
           {/* tags */}
           <ul className="mt-4 flex flex-wrap items-center gap-2">
             {tags?.map((tag, id, arr) => (
-              <Link href={`/tags/${tag}`} key={id}>
+              <Link href={`/tags/${tag.trim()}`} key={id}>
                 <li className="flex items-center gap-2">
                   <span className="text-[11px] font-medium text-gray-500 capitalize md:text-xs">
                     {" "}
@@ -117,6 +123,4 @@ export default async function Post({ slug }: { slug: string }) {
   );
 }
 
-// tags
-// views
-// share posts (url)
+// search

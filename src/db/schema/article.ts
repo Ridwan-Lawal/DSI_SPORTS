@@ -55,6 +55,17 @@ export const categories = pgTable("categories", {
   category: text("category").notNull().unique(),
 });
 
+export const postViews = pgTable("postViews", {
+  id: text("id")
+    .primaryKey()
+    .notNull()
+    .$defaultFn(() => crypto.randomUUID()),
+
+  userIP: text("userIP").notNull(),
+  postSlug: text("postSlug").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const postRelations = relations(posts, ({ one }) => {
   return {
     author: one(users, {

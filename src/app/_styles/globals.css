@@ -130,6 +130,11 @@
   .pagination-button {
     @apply w-full py-3 text-base hover:bg-neutral-800 hover:text-white;
   }
+
+  /* -===== tags and search ===== */
+  .tags-search-container {
+    @apply space-y-8 bg-white px-4 pt-6 pb-10 shadow-lg shadow-gray-100 sm:px-6 md:space-y-10 md:px-8 md:pt-8 md:pb-12;
+  }
 }
 
 @layer utilities {
