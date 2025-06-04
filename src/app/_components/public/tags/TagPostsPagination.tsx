@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const PAGINATION_BUTTON_LABEL = ["newer", "older"];
 
-export default function NewsPagination({
+export default function TagPostPagination({
   newsCount,
 }: {
   newsCount: number | undefined;

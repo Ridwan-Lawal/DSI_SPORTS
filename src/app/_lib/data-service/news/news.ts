@@ -1,4 +1,4 @@
-import { NEWS_PER_POST } from "@/src/app/_utils/constant";
+import { NEWS_PER_PAGE } from "@/src/app/_utils/constant";
 import { db } from "@/src/db";
 import { posts } from "@/src/db/schema/article";
 import { and, count, desc, eq } from "drizzle-orm";
@@ -21,8 +21,8 @@ export async function getNews(category: string | undefined, pageNo: string) {
       with: {
         author: true,
       },
-      limit: NEWS_PER_POST,
-      offset: (+pageNo - 1) * NEWS_PER_POST,
+      limit: NEWS_PER_PAGE,
+      offset: (+pageNo - 1) * NEWS_PER_PAGE,
     });
   }
 
@@ -33,8 +33,8 @@ export async function getNews(category: string | undefined, pageNo: string) {
       with: {
         author: true,
       },
-      limit: NEWS_PER_POST,
-      offset: (+pageNo - 1) * NEWS_PER_POST,
+      limit: NEWS_PER_PAGE,
+      offset: (+pageNo - 1) * NEWS_PER_PAGE,
     });
   }
 
