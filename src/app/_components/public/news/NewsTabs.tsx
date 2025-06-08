@@ -1,6 +1,7 @@
 import { Tabs } from "@/components/ui/tabs";
 import NewsByCategory from "@/src/app/_components/public/news/NewsByCategory";
 import NewsTabLists from "@/src/app/_components/public/news/NewsTabLists";
+import NewsSkeleton from "@/src/app/_components/skeletons/news-skeleton";
 import { getArticlesCategory } from "@/src/app/_lib/data-service/homepage/articles";
 import { QueryType } from "@/src/app/_utils/types";
 import { Suspense } from "react";
@@ -12,11 +13,11 @@ export default async function NewsTabs({ query }: QueryType) {
   return (
     <div className="">
       <Tabs defaultValue={query?.category ?? "all"}>
-        <div className="no-scrollbar 0 h-full w-full overflow-auto rounded-lg">
+        <div className="no-scrollbar flex h-full w-full items-center justify-center overflow-auto rounded-lg border">
           <NewsTabLists articleCategories={articleCategories} />
         </div>
 
-        <Suspense fallback={<div>Loading...</div>} key={suspenseKey}>
+        <Suspense fallback={<NewsSkeleton />} key={suspenseKey}>
           <NewsByCategory query={query} />
         </Suspense>
       </Tabs>

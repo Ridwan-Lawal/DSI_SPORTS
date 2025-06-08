@@ -8,8 +8,8 @@ const FOOTER_LINKS = [
   {
     heading: "about us",
     links: [
-      { name: "Company", link: "/company" },
-      { name: "contact us", link: "/contactus" },
+      { name: "Company", link: "/co" },
+      { name: "contact us", link: "/contact" },
     ],
   },
   {
