@@ -2,7 +2,8 @@
  * This routes are accessible by everyone
  * @type {string[]}
  */
-export const publicRoutes = ["/news", "/tags"];
+
+export const publicRoutes = ["/news", "/tags", "/search", "/contact", "/about"];
 export const publicHomePage = ["/"];
 
 /**

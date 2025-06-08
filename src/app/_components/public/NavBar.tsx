@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import logo from "@/public/svg/logo-grayscale-inverted.svg";
 import NavMenu from "@/src/app/_components/public/NavMenu";
 import RoleGate from "@/src/app/_components/public/RoleGate";
-import { X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -66,7 +66,13 @@ export default function NavBar() {
           />
         </div>
 
-        <div className="sm:hidden">
+        <div className="flex items-center gap-2 sm:hidden">
+          <Link href="/search">
+            <button className="rounded-full bg-neutral-100 p-1.5">
+              <Search className="size-[17px]" />
+            </button>
+          </Link>
+          <div className="h-5 border-r" />
           <button
             onClick={onToggleNav}
             className={`${navIsOpen ? "rotate-180" : "rotate-0"} transition-transform`}
@@ -80,15 +86,25 @@ export default function NavBar() {
         </div>
 
         <NavMenu
-          visibility="hidden sm:flex"
+          visibility="hidden sm:flex border"
           onCloseMobileNav={closeNavOnMobile}
         />
 
         <div
           id="user-nav"
-          className={`flex w-full flex-col items-center border-neutral-200 bg-white sm:flex-row sm:border-0 ${navIsOpen ? "mt-5 h-fit gap-10 border-t py-10 shadow-md shadow-neutral-300" : "h-0 gap-0 py-0 sm:h-fit sm:gap-10"} absolute top-9 left-0 z-30 overflow-hidden transition-all duration-100 sm:static sm:w-fit`}
+          className={`flex w-full flex-col items-center border-neutral-200 bg-white sm:flex-row sm:border-0 ${navIsOpen ? "mt-5 h-fit gap-10 border-t py-10 shadow-md shadow-neutral-300" : "h-0 gap-0 py-0 sm:h-fit sm:gap-5"} absolute top-9 left-0 z-30 overflow-hidden transition-all duration-100 sm:static sm:w-fit`}
         >
-          <NavMenu visibility="sm:hidden" onCloseMobileNav={closeNavOnMobile} />
+          <NavMenu
+            visibility="sm:hidden "
+            onCloseMobileNav={closeNavOnMobile}
+          />
+
+          <Link href="/search" className="hidden border sm:block">
+            <button className="rounded-full bg-neutral-100 p-1.5">
+              <Search className="size-[17px]" />
+            </button>
+          </Link>
+
           <RoleGate>
             <Link href="/admin/overview">
               <Button>Admin Dashboard</Button>

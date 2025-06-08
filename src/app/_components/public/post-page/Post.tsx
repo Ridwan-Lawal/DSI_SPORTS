@@ -2,6 +2,7 @@ import Comments from "@/src/app/_components/public/post-page/Comments";
 import Content from "@/src/app/_components/public/post-page/Content";
 import MostRecentArticles from "@/src/app/_components/public/post-page/MostRecentArticles";
 import SharePostButton from "@/src/app/_components/public/post-page/SharePostButton";
+import { MostRecentArticlesSkeleton } from "@/src/app/_components/skeletons/news-skeleton";
 import { storeViewsAction } from "@/src/app/_lib/actions/public/posts";
 import { getArticleBySlug } from "@/src/app/_lib/data-service/news/posts";
 import { getImageBlurDataUrl } from "@/src/app/_lib/sharp/blur-data-url";
@@ -46,7 +47,7 @@ export default async function Post({ slug }: { slug: string }) {
         </div>
 
         {/* title excerpt */}
-        <div className="z-10 bg-white px-4 pt-6 pb-10 shadow-lg shadow-gray-100 sm:px-6 md:px-8 md:pt-8 md:pb-12 lg:relative lg:-top-16 lg:ml-auto lg:max-w-[850px]">
+        <div className="z-10 bg-white px-4 pt-6 pb-10 shadow-lg shadow-neutral-100 sm:px-6 md:px-8 md:pt-8 md:pb-12 lg:relative lg:-top-16 lg:ml-auto lg:max-w-[850px]">
           {/* author & time posted */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -68,7 +69,7 @@ export default async function Post({ slug }: { slug: string }) {
                   {author?.name}
                 </p>
               </div>
-              <div className="h-4 border border-gray-700" />
+              <div className="h-4 border border-neutral-700" />
               <p className="text-sm">{formatDateForPostPage(publishedAt)}</p>
             </div>
 
@@ -113,7 +114,8 @@ export default async function Post({ slug }: { slug: string }) {
       </div>
 
       {/* most recent articles (change later to editor picks) */}
-      <Suspense fallback={<div>Loading...</div>}>
+
+      <Suspense fallback={<MostRecentArticlesSkeleton />}>
         <MostRecentArticles currentPostSlug={slug} />
       </Suspense>
 

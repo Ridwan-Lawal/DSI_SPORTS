@@ -1,6 +1,7 @@
 // export metadata using generateMetadata()
 
 import Post from "@/src/app/_components/public/post-page/Post";
+import { PostSkeleton } from "@/src/app/_components/skeletons/news-skeleton";
 import { getArticleBySlug } from "@/src/app/_lib/data-service/news/posts";
 import { Suspense } from "react";
 
@@ -24,7 +25,7 @@ export default async function Page({
 
   return (
     <div className="bg-slate-50 py-12">
-      <Suspense fallback={<div>Loading...</div>} key={paramsData?.slug}>
+      <Suspense fallback={<PostSkeleton />} key={paramsData?.slug}>
         <Post slug={paramsData?.slug} />
       </Suspense>
     </div>
