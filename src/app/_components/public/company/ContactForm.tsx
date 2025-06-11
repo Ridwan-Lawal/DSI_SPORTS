@@ -46,7 +46,7 @@ export default function ContactForm() {
             defaultValue={inputs?.emailToContact as string}
             name="emailToContact"
             id="emailToContact"
-            className="rounded-sm border border-neutral-200 px-4 py-2.5 outline-gray-200"
+            className="cursor-pointer rounded-sm border border-neutral-200 px-4 py-2.5 outline-gray-200"
           >
             {CONTACTS?.map((contact, id) => (
               <option key={id} value={contact?.email} className="text-[15px]">
