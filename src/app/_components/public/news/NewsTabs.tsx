@@ -13,7 +13,7 @@ export default async function NewsTabs({ query }: QueryType) {
   return (
     <div className="">
       <Tabs defaultValue={query?.category ?? "all"}>
-        <div className="no-scrollbar flex h-full w-full items-center justify-center overflow-auto rounded-lg">
+        <div className="no-scrollbar w-full overflow-auto rounded-lg">
           <NewsTabLists articleCategories={articleCategories} />
         </div>
 

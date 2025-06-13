@@ -122,13 +122,11 @@ export function PostSkeleton() {
 
 export default function NewsSkeleton() {
   return (
-    <div className="space-y-6">
+    <div className="mt-5 space-y-6">
       {/* Header Skeleton */}
-      <div>
-        <h5 className={`${bebasNeue.className}`}> News</h5>
-        <p className="text-sm text-neutral-500">
-          The hottest news from the world of football
-        </p>
+      <div className="space-y-3">
+        <Skeleton className="h-9 w-30" />
+        <Skeleton className="h-5 w-50" />
       </div>
 
       {/* Featured Post Skeleton */}

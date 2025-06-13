@@ -41,7 +41,7 @@ export default function NewsTabLists({ articleCategories }: NewsTabListsProps) {
   }
 
   return (
-    <TabsList className="mx-auto space-x-4">
+    <TabsList className="shrink-0 space-x-4">
       <TabsTrigger
         value="all"
         className="text-neutral-700"
