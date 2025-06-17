@@ -7,7 +7,6 @@ import {
 } from "@/src/app/_lib/data-service/news/news";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { QueryType } from "@/src/app/_utils/types";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function NewsByCategory({ query }: QueryType) {
@@ -32,18 +31,6 @@ export default async function NewsByCategory({ query }: QueryType) {
           <h5 className={`${bebasNeue?.className}`}>
             {query?.category ?? "News"}
           </h5>
-          {query?.category && (
-            <div className="relative -mt-1 size-6">
-              <Image
-                src={`/categories/${query?.category}.png`}
-                alt="logo"
-                quality={100}
-                priority={true}
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
         </div>
         <p className="items-center justify-center text-sm text-neutral-500">
           The hottest news from{" "}

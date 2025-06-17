@@ -8,7 +8,7 @@ export default function Content({
 }: {
   postContent: string | undefined;
 }) {
-  const [editable, setEditable] = useState(false);
+  const [editable] = useState(false);
   const editor = useEditor({
     shouldRerenderOnTransaction: false,
     editable,

@@ -8,9 +8,10 @@ export const getMatches = cache(async function () {
     redirect("/auth/admin/login");
   }
 
-  const currentDate = new Date().toISOString().split("T")[0];
+  // const currentDate = new Date().toISOString().split("T")[0];
 
   // /matches?competitions=PL,SA,FL1,CL,BL1,ES
+
   try {
     const response = await fetch(`${process.env.LIVE_SCORES_URL}/v4/matches`, {
       method: "GET",

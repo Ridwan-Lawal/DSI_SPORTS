@@ -66,6 +66,16 @@ export const postViews = pgTable("postViews", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const siteVisitors = pgTable("siteVisitors", {
+  id: text("id")
+    .primaryKey()
+    .notNull()
+    .$defaultFn(() => crypto.randomUUID()),
+  userIP: text("userIP").notNull(),
+  visitedCount: integer("visitedCount").notNull().default(1),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const postRelations = relations(posts, ({ one }) => {
   return {
     author: one(users, {

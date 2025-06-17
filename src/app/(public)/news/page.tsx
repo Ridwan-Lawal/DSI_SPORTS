@@ -16,7 +16,7 @@ export default async function Page({
 
   return (
     <div className="bg-slate-50">
-      <div className="mx-auto max-w-[1440px] border-2 border-green-500 py-12">
+      <div className="mx-auto max-w-[1440px] py-12">
         <div className="space-y-12 bg-white px-4 py-10 sm:px-6 md:space-y-14 md:px-8">
           <Suspense fallback={<NewsTabsSkeleton />}>
             <NewsTabs query={query} />

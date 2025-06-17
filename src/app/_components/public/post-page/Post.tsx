@@ -69,7 +69,7 @@ export default async function Post({ slug }: { slug: string }) {
                   {author?.name}
                 </p>
               </div>
-              <div className="h-4 border border-neutral-700" />
+              <div className="h-4 border-neutral-700" />
               <p className="text-sm">{formatDateForPostPage(publishedAt)}</p>
             </div>
 

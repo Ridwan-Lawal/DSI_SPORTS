@@ -39,7 +39,7 @@ export default async function FeaturedArticle({
         )}
       </div>
 
-      <div className="space-y-3 border md:w-[50%] lg:w-[35%] lg:space-y-5">
+      <div className="space-y-3 md:w-[50%] lg:w-[35%] lg:space-y-5">
         {/* title */}
         <p className={`text-[22px] lg:text-2xl ${bebasNeue?.className} `}>
           {title}

@@ -3,6 +3,29 @@ import { getMatches } from "@/src/app/_lib/data-service/live-scores/matches";
 import Image from "next/image";
 import Link from "next/link";
 
+interface Match {
+  homeTeam: {
+    name: string;
+    crest: string;
+  };
+  awayTeam: {
+    name: string;
+    crest: string;
+  };
+  status: string;
+  utcDate: string;
+  score: {
+    fulltime: {
+      home: number;
+      away: number;
+    };
+    halftime: {
+      home: number;
+      away: number;
+    };
+  };
+}
+
 export default async function Matches() {
   const matchesData = await getMatches();
   const matches = matchesData?.matches?.slice(0, 5);
@@ -20,7 +43,7 @@ export default async function Matches() {
       </header>
 
       <main className="space-y-3 odd:bg-neutral-100 even:bg-white">
-        {matches?.map((match, id) => (
+        {matches?.map((match: Match, id: number) => (
           <div
             key={id}
             className="grid grid-cols-3 justify-center px-2 py-2 odd:bg-neutral-50 even:bg-white"
@@ -43,13 +66,15 @@ export default async function Matches() {
             {/* time */}
             {match?.status === "TIMED" ? (
               <p className="justify-self-center rounded-md px-2 py-1.5 font-medium">
-                {String(
-                  new Date(match?.utcDate as Date)?.getUTCHours(),
-                )?.padStart(2, "0")}{" "}
+                {String(new Date(match?.utcDate)?.getUTCHours())?.padStart(
+                  2,
+                  "0",
+                )}{" "}
                 :{" "}
-                {String(
-                  new Date(match?.utcDate as Date)?.getUTCMinutes(),
-                )?.padStart(2, "0")}
+                {String(new Date(match?.utcDate)?.getUTCMinutes())?.padStart(
+                  2,
+                  "0",
+                )}
               </p>
             ) : (
               <p className="justify-self-center rounded-md px-2 py-1.5 font-medium">
