@@ -5,7 +5,7 @@ import { PublishArticleSchema } from "@/src/app/_lib/schema/articles-schema";
 import { getUser } from "@/src/app/_utils/get-session";
 import { db } from "@/src/db";
 import { posts } from "@/src/db/schema/article";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function draftArticleAction(articleContents: ArticleContentProps) {
@@ -47,6 +47,7 @@ export async function draftArticleAction(articleContents: ArticleContentProps) {
       authorId: user?.id,
     });
 
+    revalidateTag("articles");
     revalidatePath("/admin/overview");
 
     return {
@@ -122,6 +123,8 @@ export async function publishArticleAction(
       authorId: user?.id,
     });
 
+    revalidateTag("articles");
+
     revalidatePath("/admin/overview");
     revalidatePath("/admin/articles");
 
@@ -141,6 +144,3 @@ export async function publishArticleAction(
     }
   }
 }
-
-// handle the draft submission
-// when you finish this part, start with the article page

@@ -4,9 +4,11 @@ import { formatArticleDate } from "@/src/app/_utils/date";
 import { OtherArticleProp } from "@/src/app/_utils/types";
 import { Dot } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function TransferNewsCard({ article }: OtherArticleProp) {
-  const { title, author, featuredImage, publishedAt, category } = article ?? {};
+  const { title, author, featuredImage, publishedAt, category, slug } =
+    article ?? {};
 
   const [featuredImageBlurDataUrl, avatarBlurDataUrl] = await Promise.all([
     getImageBlurDataUrl(featuredImage),
@@ -14,7 +16,10 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
   ]);
 
   return (
-    <div className="w-[300px] shrink-0 space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100">
+    <Link
+      href={`/news/${slug}`}
+      className="w-[300px] shrink-0 space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100"
+    >
       {/* title and post image */}
       <div className="flex justify-between gap-4 md:flex-col">
         <p
@@ -73,6 +78,6 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
           {category}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

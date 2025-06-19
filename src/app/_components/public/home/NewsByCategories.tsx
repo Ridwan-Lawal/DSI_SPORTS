@@ -1,9 +1,9 @@
-import { getArticlesCategory } from "@/src/app/_lib/data-service/homepage/articles";
+import { getHomeArticlesCategoryCache } from "@/src/app/_lib/cache";
 import { bebasNeue } from "@/src/app/_styles/font";
 import Link from "next/link";
 
 export default async function NewsByCategories() {
-  const articleCategories = await getArticlesCategory();
+  const articleCategories = await getHomeArticlesCategoryCache();
 
   return (
     <div className="space-y-3">

@@ -9,11 +9,20 @@ import { MdError } from "react-icons/md";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - DSI",
-    default: "Home - DSI",
+    template: "%s - DSI Football",
+    default: "Home - DSI Football",
   },
 
-  description: "",
+  description:
+    "DSI Football is a platform dedicated to providing the latest news, updates, and insights on football. Stay informed with our comprehensive coverage of local and international football events.",
+  // To add metadata for each social media platform, you can use the following format
+  twitter: {
+    // defines how the opengraph  image will look on twitter maybe small or large
+    card: "summary_large_image",
+    description:
+      "Delivering the latest football news, updates, and insights. Stay informed with DSI Football.",
+    title: "DSI Football - Your Source for Football News",
+  },
 };
 
 export default function RootLayout({

@@ -2,18 +2,40 @@
 
 import Post from "@/src/app/_components/public/post-page/Post";
 import { PostSkeleton } from "@/src/app/_components/skeletons/news-skeleton";
+import { getAllArticles } from "@/src/app/_lib/data-service/homepage/articles";
 import { getArticleBySlug } from "@/src/app/_lib/data-service/news/posts";
+import { Metadata } from "next";
 import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<Metadata> {
   const paramsData = await params;
   const article = await getArticleBySlug(paramsData?.slug);
 
-  return { title: article?.title };
+  return {
+    title: article?.seoTitle || article?.title,
+    description: article?.seoDescription || article?.excerpt,
+    openGraph: {
+      images: [
+        {
+          url: article?.featuredImage || "",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+
+  return articles?.map((article) => ({
+    slug: article?.slug,
+  }));
 }
 
 export default async function Page({
