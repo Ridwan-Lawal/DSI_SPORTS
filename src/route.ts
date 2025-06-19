@@ -3,7 +3,15 @@
  * @type {string[]}
  */
 
-export const publicRoutes = ["/news", "/tags", "/search", "/contact", "/about"];
+export const publicRoutes = [
+  "/news",
+  "/tags",
+  "/search",
+  "/contact",
+  "/about",
+  "/sitemap.xml",
+  "/robots.txt",
+];
 export const publicHomePage = ["/"];
 
 /**

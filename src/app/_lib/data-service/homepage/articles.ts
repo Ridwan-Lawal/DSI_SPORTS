@@ -6,7 +6,12 @@ import { cache } from "react";
 export const getAllArticles = cache(async function () {
   try {
     const articles = await db
-      .select({ id: posts?.id, slug: posts?.slug })
+      .select({
+        id: posts?.id,
+        slug: posts?.slug,
+        updatedAt: posts?.updatedAt,
+        createdAt: posts?.createdAt,
+      })
       .from(posts)
       .where(eq(posts?.status, "published"));
 
