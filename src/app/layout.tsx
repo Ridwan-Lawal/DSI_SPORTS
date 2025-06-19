@@ -23,6 +23,27 @@ export const metadata: Metadata = {
       "Delivering the latest football news, updates, and insights. Stay informed with DSI Football.",
     title: "DSI Football - Your Source for Football News",
   },
+
+  openGraph: {
+    title: {
+      template: "%s - DSI Football",
+      default: "Home - DSI Football",
+    },
+    description:
+      "Delivering the latest football news, updates, and insights. Stay informed with DSI Football.",
+    url: process.env.NEXT_PUBLIC_APP_URL,
+    siteName: "DSI Football",
+    locale: "en_US",
+    type: "website",
+  },
+  applicationName: "Your Sport Site",
+  referrer: "origin-when-cross-origin",
+  authors: [{ name: "Your Name", url: "https://yoursite.com" }],
+  formatDetection: {
+    email: false,
+    address: true,
+    telephone: true,
+  },
 };
 
 export default function RootLayout({
