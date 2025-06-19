@@ -33,6 +33,10 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const articles = await getAllArticles();
 
+  if (!articles || articles?.length === 0) {
+    return [];
+  }
+
   return articles?.map((article) => ({
     slug: article?.slug,
   }));
