@@ -4,11 +4,13 @@ import { formatArticleDate } from "@/src/app/_utils/date";
 import { OtherArticleProp } from "@/src/app/_utils/types";
 import { Dot } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function OtherHomepagePosts({
   article,
 }: OtherArticleProp) {
-  const { title, publishedAt, featuredImage, author, category } = article ?? {};
+  const { title, publishedAt, featuredImage, author, category, slug } =
+    article ?? {};
 
   const [featuredImageBlurDataUrl, avatarBlurDataUrl] = await Promise.all([
     getImageBlurDataUrl(featuredImage),
@@ -16,7 +18,10 @@ export default async function OtherHomepagePosts({
   ]);
 
   return (
-    <div className="space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100">
+    <Link
+      href={`/news/${slug}`}
+      className="space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100"
+    >
       {/* title and post image */}
       <div className="flex justify-between md:flex-col md:gap-4">
         <p
@@ -75,6 +80,6 @@ export default async function OtherHomepagePosts({
           {category}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

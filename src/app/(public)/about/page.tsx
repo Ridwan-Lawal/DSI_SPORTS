@@ -3,6 +3,11 @@ import AboutStory from "@/src/app/_components/public/company/AboutStory";
 import SocialsMediaDetails from "@/src/app/_components/public/home/SocialsMediaDetails";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { Mail, Phone } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 export default function Page() {
   return (

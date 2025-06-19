@@ -3,6 +3,21 @@ import { categories, posts } from "@/src/db/schema/article";
 import { and, desc, eq } from "drizzle-orm";
 import { cache } from "react";
 
+export const getAllArticles = cache(async function () {
+  try {
+    const articles = await db
+      .select({ id: posts?.id, slug: posts?.slug })
+      .from(posts)
+      .where(eq(posts?.status, "published"));
+
+    return articles;
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error?.message);
+    }
+  }
+});
+
 export const getArticlesCategory = cache(async function () {
   try {
     const articleCategories = await db

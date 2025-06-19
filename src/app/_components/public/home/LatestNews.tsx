@@ -1,10 +1,10 @@
 import FeaturedArticle from "@/src/app/_components/public/home/FeaturedPost";
 import OtherHomepagePosts from "@/src/app/_components/public/home/OtherHomepagePosts";
-import { getHomeArticles } from "@/src/app/_lib/data-service/homepage/articles";
+import { getHomeArticlesCache } from "@/src/app/_lib/cache";
 import { bebasNeue } from "@/src/app/_styles/font";
 
 export default async function LatestNews() {
-  const latestArticles = await getHomeArticles();
+  const latestArticles = await getHomeArticlesCache();
 
   const featuredArticleData = latestArticles?.at(0);
 
