@@ -5,7 +5,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendPasswordCreateMail(token: string, email: string) {
-  const createPasswordLink = `${process.env.APP_URL}/auth/admin/create-new-password?token=${token}`;
+  const createPasswordLink = `${process.env.NEXT_PUBLIC_APP_URL}/auth/admin/create-new-password?token=${token}`;
 
   await resend.emails.send({
     from: "support@dsifootball.live",
@@ -20,7 +20,7 @@ export async function sendPasswordCreateMail(token: string, email: string) {
 }
 
 export async function sendPasswordResetMail(email: string, token: string) {
-  const resetPasswordLink = `${process.env.APP_URL}/auth/admin/reset-password?token=${token}`;
+  const resetPasswordLink = `${process.env.NEXT_PUBLIC_APP_URL}/auth/admin/reset-password?token=${token}`;
 
   await resend.emails.send({
     from: "support@dsifootball.live",
