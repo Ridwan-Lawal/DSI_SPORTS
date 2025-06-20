@@ -13,6 +13,11 @@ import { FaInstagram, FaTiktok, FaXTwitter, FaYoutube } from "react-icons/fa6";
 // news per page
 export const NEWS_PER_PAGE = 37;
 
+export const CONTACTS = [
+  { department: "Writer", email: "ibidunnidoyinsola@dsifootball.live" },
+  { department: "Support Team", email: "support@dsifootball.live" },
+];
+
 export const SOCIALS = [
   {
     icon: FaXTwitter,

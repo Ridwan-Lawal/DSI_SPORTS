@@ -2,13 +2,9 @@
 
 import Input from "@/src/app/_components/auth/Input";
 import { contactCompany } from "@/src/app/_lib/actions/public/contact";
+import { CONTACTS } from "@/src/app/_utils/constant";
 import { useActionState, useEffect } from "react";
 import toast from "react-hot-toast";
-
-const CONTACTS = [
-  { department: "CEO / Founder", email: "lawalridwan860@gmail.com" },
-  { department: "Tech Team", email: "lawalridwan860@gmail.com" },
-];
 
 export default function ContactForm() {
   const [state, formAction, isSubmitting] = useActionState(
