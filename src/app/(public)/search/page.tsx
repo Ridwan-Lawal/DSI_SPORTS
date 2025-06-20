@@ -22,7 +22,6 @@ export default async function Page({
           <SearchForm />
         </div>
 
-        <PostsBySearchSkeleton />
         {/* posts */}
         <Suspense fallback={<PostsBySearchSkeleton />} key={queryData.query}>
           <PostsBySearch query={queryData?.query} pageNo={queryData?.page} />

@@ -98,3 +98,7 @@ export default function RootLayout({
     </html>
   );
 }
+
+// continue with the domain, and resend configuration, email configuration
+// still continue with the seo, find out how you can be seen when user search for your site
+// Then do the google search console from that tutorial

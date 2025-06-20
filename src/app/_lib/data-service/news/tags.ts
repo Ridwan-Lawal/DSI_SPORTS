@@ -25,7 +25,7 @@ export async function getPostsByTag(tag: string, pageNo: string) {
     const articlesByTag = await db.query.posts.findMany({
       where: and(
         eq(posts.status, "published"),
-        arrayOverlaps(posts.tags, [tag]),
+        arrayOverlaps(posts.tags, [tag.toLowerCase()]),
       ),
       orderBy: desc(posts?.publishedAt),
       limit: NEWS_PER_PAGE,

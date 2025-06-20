@@ -55,7 +55,7 @@ export default function NavBar() {
       <div
         className={`admin-nav user mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between px-6 py-2 transition-all md:py-[15px]`}
       >
-        <div className="relative size-10">
+        <Link href="/" className="relative size-10">
           <Image
             src={logo}
             alt="logo"
@@ -64,7 +64,7 @@ export default function NavBar() {
             fill
             className="object-contain"
           />
-        </div>
+        </Link>
 
         <div className="flex items-center gap-2 sm:hidden">
           <Link href="/search">

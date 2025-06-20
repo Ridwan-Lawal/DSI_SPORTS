@@ -11,6 +11,7 @@ export const getAllArticles = cache(async function () {
         slug: posts?.slug,
         updatedAt: posts?.updatedAt,
         createdAt: posts?.createdAt,
+        tags: posts?.tags,
       })
       .from(posts)
       .where(eq(posts?.status, "published"));
