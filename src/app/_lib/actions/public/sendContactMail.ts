@@ -13,8 +13,9 @@ interface ContactFormData {
 
 export async function sendContactMail(contactFormData: ContactFormData) {
   const { name, email, message } = contactFormData;
+  console.log("contact", contactFormData?.emailToContact, email);
   await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: email,
     to: contactFormData?.emailToContact,
     subject: contactFormData?.summary,
     react: EmailContactTemplate({ name, email, message }),

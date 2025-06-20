@@ -22,8 +22,8 @@ interface PasswordResetEmailProps {
 
 export default function PasswordResetTemplate({
   resetPasswordLink,
-  companyName = "DSI Sports",
-  supportEmail = "support@dsisports.com",
+  companyName = "DSI Football",
+  supportEmail = "support@dsifootball.live",
 }: PasswordResetEmailProps) {
   return (
     <Tailwind>

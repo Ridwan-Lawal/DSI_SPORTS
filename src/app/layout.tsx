@@ -30,6 +30,7 @@ export const metadata: Metadata = {
       template: "%s - DSI Football",
       default: "Home - DSI Football",
     },
+    images: [`${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`],
     description:
       "Delivering the latest football news, updates, and insights. Stay informed with DSI Football.",
     url: process.env.NEXT_PUBLIC_APP_URL,
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
   applicationName: "Your Sport Site",
   referrer: "origin-when-cross-origin",
   authors: [{ name: "Your Name", url: "https://yoursite.com" }],
+
   formatDetection: {
     email: false,
     address: true,
@@ -101,6 +103,4 @@ export default function RootLayout({
   );
 }
 
-// continue with the domain, and resend configuration, email configuration
-// still continue with the seo, find out how you can be seen when user search for your site
-// Then do the google search console from that tutorial
+// Delete the existing posts so everything will be fress, and add doyins email and my email to the app,
