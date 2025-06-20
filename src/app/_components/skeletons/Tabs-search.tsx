@@ -38,7 +38,7 @@ export function PostsBySearchSkeleton() {
   return (
     <>
       {/* Grid layout for loading cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
+      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
         {[...Array(8)].map((_, index) => (
           <div
             key={index}

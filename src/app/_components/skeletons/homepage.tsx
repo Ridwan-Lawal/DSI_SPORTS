@@ -57,8 +57,10 @@ export default function LatestNewsSkeleton() {
         <div className="flex flex-col gap-4 overflow-hidden rounded-sm border-b border-neutral-200 pb-6 md:col-span-2 md:flex-row md:items-center md:pr-4 md:pb-0 lg:col-span-4 lg:mb-6">
           <Skeleton className="relative h-[280px] w-full md:h-[400px] md:w-[50%] lg:w-[65%]" />
           <div className="space-y-3 md:w-[50%] lg:w-[35%] lg:space-y-5">
-            <Skeleton className="h-6 w-[80%]" />
-            <Skeleton className="hidden h-4 w-[90%] md:block" />
+            <Skeleton className="h-8 w-[80%]" />
+            <Skeleton className="hidden h-3 w-[90%] md:block" />
+            <Skeleton className="hidden h-3 w-[90%] md:block" />
+            <Skeleton className="hidden h-3 w-[90%] md:block" />
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Skeleton className="size-[24px] rounded-full" />
