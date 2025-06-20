@@ -2,6 +2,7 @@ import QueryProviders from "@/src/app/_lib/react-query/Providers";
 import StoreProvider from "@/src/app/_lib/redux/StoreProvider";
 import { roboto } from "@/src/app/_styles/font";
 import "@_styles/globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { FaCheckCircle } from "react-icons/fa";
@@ -94,6 +95,7 @@ export default function RootLayout({
             },
           }}
         />
+        <Analytics />
       </body>
     </html>
   );
