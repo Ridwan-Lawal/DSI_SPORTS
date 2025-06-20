@@ -11,7 +11,7 @@ import LatestNewsSkeleton, {
 } from "@/src/app/_components/skeletons/homepage";
 import { Suspense } from "react";
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className="bg-slate-50">
       <div className="mx-auto max-w-[1440px] py-12">
