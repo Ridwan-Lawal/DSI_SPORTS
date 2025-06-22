@@ -41,7 +41,7 @@ export default function SidebarAdmin() {
           transition={{ ease: "linear", duration: 0.2 }}
           className="sidebar-overlay fixed z-30 w-full bg-black/30 backdrop-blur-[2px] md:static"
         >
-          <div className="z-30 flex h-screen w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px]">
+          <div className="z-30 flex h-[100dvh] w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px] md:h-screen">
             {/* header */}
             <header className="p flex h-[9vh] w-full items-center justify-between border-b border-neutral-200 px-2">
               <div className="relative size-12">
