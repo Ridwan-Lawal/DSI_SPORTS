@@ -15,8 +15,8 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
   const setLink = useCallback(() => {
     if (!editor) return;
 
-    const { from, to } = editor.state.selection;
-    const hasSelection = from !== to;
+    // const { from, to } = editor.state.selection;
+    // const hasSelection = from !== to;
 
     // cancelled
     if (url === null) {
