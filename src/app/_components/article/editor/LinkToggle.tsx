@@ -18,7 +18,6 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
     // const { from, to } = editor.state.selection;
     // const hasSelection = from !== to;
 
-    // cancelled
     if (url === null) {
       return;
     }
