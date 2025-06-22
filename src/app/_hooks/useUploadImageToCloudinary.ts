@@ -18,7 +18,7 @@ export function useUploadImageToCloudinary() {
 
     try {
       const cloudUrl = process.env.NEXT_PUBLIC_CLOUDINARY_URL!;
-      console.log(cloudUrl, "env");
+
       const response = await fetch(cloudUrl, {
         method: "POST",
         body: form,
@@ -29,7 +29,7 @@ export function useUploadImageToCloudinary() {
       }
 
       const data = await response.json();
-      console.log(data);
+
       setFeaturedImageLink(data?.url);
     } catch (error) {
       if (error instanceof Error) {

@@ -68,7 +68,7 @@ export async function publishArticleAction(
 ) {
   // check if user is logged in
   const user = await getUser();
-  console.log(user, "users");
+
   if (!user || !user?.id) {
     redirect("/auth/admin/login");
   }
@@ -79,10 +79,7 @@ export async function publishArticleAction(
   const validatedArticleContent =
     PublishArticleSchema.safeParse(articleContents);
 
-  console.log(articleContents);
-
   if (!validatedArticleContent?.success) {
-    console.log(validatedArticleContent?.error?.flatten()?.fieldErrors);
     return {
       formErrors: validatedArticleContent?.error?.flatten()?.fieldErrors,
       inputs: articleContents,
@@ -130,8 +127,6 @@ export async function publishArticleAction(
 
     revalidatePath("/news");
     revalidatePath("/");
-
-    console.log("no errroroo");
 
     return {
       success: "Article successfully published.",

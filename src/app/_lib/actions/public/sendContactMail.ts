@@ -13,7 +13,7 @@ interface ContactFormData {
 
 export async function sendContactMail(contactFormData: ContactFormData) {
   const { name, email, message } = contactFormData;
-  console.log("contact", contactFormData?.emailToContact, email);
+
   await resend.emails.send({
     from: "query@dsifootball.live",
     to: contactFormData?.emailToContact,

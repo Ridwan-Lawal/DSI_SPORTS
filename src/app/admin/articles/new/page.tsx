@@ -22,8 +22,6 @@ export default async function Page({
   const query = await searchParams;
   const articleToEdit = await getArticleById(query?.articleToEditId);
 
-  console.log(articleToEdit, "yes");
-
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({

@@ -32,8 +32,6 @@ export default function TagPostPagination({
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
-  console.log(currentPage, lastORTotalPage);
-
   return (
     <div className="news-pagination mt-8 flex flex-col gap-3">
       {PAGINATION_BUTTON_LABEL?.map((label) => (

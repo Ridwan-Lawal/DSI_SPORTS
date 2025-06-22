@@ -44,8 +44,6 @@ export async function passwordSettingsAction(
 
   const currentAdmin = await getAdminById(user?.id);
 
-  console.log("before");
-
   if (currentPassword && currentAdmin?.password) {
     const doesPasswordsMatch = await bcrypt.compare(
       currentPassword,
@@ -53,11 +51,9 @@ export async function passwordSettingsAction(
     );
 
     if (!doesPasswordsMatch) {
-      console.log(doesPasswordsMatch, "retttttttttttttttttttttturn");
       return { error: "Password update failed!", inputs: passwordDetails };
     }
 
-    console.log("middle");
     const isNewPasswordSameAsCurrent = await bcrypt.compare(
       confirmNewPassword,
       currentAdmin?.password,
@@ -70,8 +66,6 @@ export async function passwordSettingsAction(
       };
     }
   }
-
-  console.log("after");
 
   const hashedPassword = await bcrypt.hash(confirmNewPassword, 10);
 

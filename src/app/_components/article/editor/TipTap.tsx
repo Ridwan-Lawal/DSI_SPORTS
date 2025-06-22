@@ -63,7 +63,7 @@ function Tiptap({ content, onUpdateContent }: TiptapProps) {
         maxSize: MAX_FILE_SIZE,
         limit: 3,
         upload: handleImageUpload,
-        onError: (error) => console.error("Upload failed:", error),
+        onError: (error) => 
       }),
       ListKeymap,
 

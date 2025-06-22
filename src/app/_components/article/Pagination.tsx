@@ -21,8 +21,6 @@ export default function Pagination({
     ? Math.ceil(totalArticlesCount / ARTICLES_PER_PAGE)
     : 0;
 
-  console.log({ noOfPages, totalArticlesCount, currentPage });
-
   function addPageToUrl(action: string) {
     const params = new URLSearchParams(searchParams.toString());
 

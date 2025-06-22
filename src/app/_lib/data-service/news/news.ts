@@ -61,7 +61,7 @@ export async function getPostsCountByCategory(category: string | undefined) {
 
   try {
     const postByCategoryCount = await dbQuery;
-    console.log(postByCategoryCount, "pageee");
+
     return postByCategoryCount;
   } catch (error) {
     if (error instanceof Error) {

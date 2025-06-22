@@ -30,7 +30,12 @@ export const metadata: Metadata = {
       template: "%s - DSI Football",
       default: "Home - DSI Football",
     },
-    images: [`${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`],
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`,
+        alt: "DSI Football Open Graph Image",
+      },
+    ],
     description:
       "Delivering the latest football news, updates, and insights. Stay informed with DSI Football.",
     url: process.env.NEXT_PUBLIC_APP_URL,
@@ -46,6 +51,12 @@ export const metadata: Metadata = {
     email: false,
     address: true,
     telephone: true,
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 

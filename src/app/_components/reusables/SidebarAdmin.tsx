@@ -19,7 +19,7 @@ import { usePathname } from "next/navigation";
 
 export default function SidebarAdmin() {
   const { user } = useGetUser();
-  console.log(user, "yeesss");
+
   const pathname = usePathname();
   const { mobileSidebarIsOpen } = useAppSelector(getLayout);
   const dispatch = useAppDispatch();

@@ -5,7 +5,6 @@ import { bebasNeue } from "@/src/app/_styles/font";
 export default async function TransferNews() {
   const transferArticles = await getHomeArticlesCache("transfer");
 
-  console.log(transferArticles);
 
   return (
     <div className="space-y-6">

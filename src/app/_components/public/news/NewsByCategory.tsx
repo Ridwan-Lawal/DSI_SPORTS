@@ -15,13 +15,9 @@ export default async function NewsByCategory({ query }: QueryType) {
     await getPostsCountByCategory(query?.category),
   ]);
 
-  console.log(newsArticles, "articlesss");
-
   const featuredNewsData = newsArticles?.at(0);
 
   const otherNewsData = newsArticles?.slice(1);
-
-  console.log(newsCount, "newwsss count");
 
   return (
     <div className="mt-5 space-y-6">

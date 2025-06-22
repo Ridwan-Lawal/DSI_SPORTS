@@ -149,6 +149,21 @@
   .box-shadow {
     box-shadow: -10px 0 22px 20px white;
   }
+
+  @keyframes shrinkAndExpand {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.9);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .spinner-container {
+    animation: shrinkAndExpand 1.5s infinite ease-in-out;
+  }
 }
 
 @theme inline {

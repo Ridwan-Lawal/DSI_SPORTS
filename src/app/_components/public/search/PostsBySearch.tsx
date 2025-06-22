@@ -21,8 +21,6 @@ export default async function PostsBySearch({
     getPostBySearchCount(query),
   ]);
 
-  console.log(articles);
-
   return (
     <div className="mt-8 md:mt-10">
       {!articles?.length && !query && (

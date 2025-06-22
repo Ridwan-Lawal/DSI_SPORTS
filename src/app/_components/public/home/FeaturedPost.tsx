@@ -21,7 +21,7 @@ export default async function FeaturedArticle({
   return (
     <Link
       href={`/news/${slug}`}
-      className="flex flex-col gap-4 overflow-hidden rounded-sm border border-neutral-200 pb-6 md:col-span-2 md:flex-row md:items-center md:pr-4 md:pb-0 lg:col-span-4 lg:mb-6"
+      className="flex flex-col gap-4 overflow-hidden border-b border-neutral-200 pb-6 md:col-span-2 md:flex-row md:items-center md:rounded-sm md:border md:pr-4 md:pb-0 lg:col-span-4 lg:mb-6"
     >
       {/* feature */}
       <div className="relative h-[280px] w-full md:h-[400px] md:w-[50%] lg:w-[65%]">

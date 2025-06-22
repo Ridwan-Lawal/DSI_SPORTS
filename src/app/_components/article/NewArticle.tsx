@@ -46,7 +46,6 @@ export default function NewArticle({
         : "",
   );
 
-  console.log(articleToEdit);
   const { formData, setFormData } = useStoreFormDataInStorage(content);
   const { featuredImageLink, onImageUpload } = useUploadImageToCloudinary();
   const router = useRouter();
@@ -71,8 +70,6 @@ export default function NewArticle({
       }
     }
   }, [state, router]);
-
-  console.log(featuredImageLink, "feature");
 
   function onDraftArticle() {
     const articleContentTodraft = {
