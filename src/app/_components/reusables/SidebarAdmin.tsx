@@ -35,10 +35,10 @@ export default function SidebarAdmin() {
     <AnimatePresence>
       {mobileSidebarIsOpen && (
         <motion.div
-          initial={{ x: "-100%" }}
-          animate={{ x: "0%" }}
-          exit={{ x: "-100%" }}
-          transition={{ ease: "easeInOut", duration: 0.25 }}
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={{ x: "0%", opacity: 1 }}
+          exit={{ x: "-100%", opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.15 }}
           className="sidebar-overlay fixed z-30 w-full bg-black/30 backdrop-blur-[2px] md:static"
         >
           <div className="z-30 flex h-[100dvh] w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px] md:h-screen">

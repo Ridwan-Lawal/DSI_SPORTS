@@ -152,7 +152,7 @@ function Tiptap({ content, onUpdateContent }: TiptapProps) {
   });
 
   return (
-    <div className="space-y-4">
+    <div className="relative space-y-4">
       <Toolbar editor={editor} />
       <EditorContent
         editor={editor}
