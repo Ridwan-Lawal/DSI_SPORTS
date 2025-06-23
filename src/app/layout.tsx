@@ -34,6 +34,8 @@ export const metadata: Metadata = {
       {
         url: `${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`,
         alt: "DSI Football Open Graph Image",
+        width: 1200,
+        height: 630,
       },
     ],
     description:
