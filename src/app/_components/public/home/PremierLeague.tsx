@@ -4,6 +4,7 @@ import { bebasNeue } from "@/src/app/_styles/font";
 
 export default async function PremierLeagueNews() {
   const premierLeagueArticles = await getHomeArticlesCache("premier league");
+
   return (
     <div className="space-y-6">
       <div>

@@ -11,6 +11,9 @@ import LatestNewsSkeleton, {
 } from "@/src/app/_components/skeletons/homepage";
 import { Suspense } from "react";
 
+// remove aug 1st
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   return (
     <div className="bg-slate-50">

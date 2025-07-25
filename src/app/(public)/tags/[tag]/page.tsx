@@ -1,23 +1,10 @@
 import PostsByTags from "@/src/app/_components/public/tags/PostsByTags";
 import { PostsByTagsSkeleton } from "@/src/app/_components/skeletons/Tabs-search";
-import { getAllArticles } from "@/src/app/_lib/data-service/homepage/articles";
 import { Suspense } from "react";
 
 interface ParamsProp {
   params: Promise<{ tag: string }>;
   searchParams?: Promise<{ page: string }>;
-}
-
-export async function generateStaticParams() {
-  const articles = await getAllArticles();
-
-  if (!articles) return [];
-
-  return articles?.flatMap((article) =>
-    article?.tags?.map((tag) => ({
-      tag,
-    })),
-  );
 }
 
 export async function generateMetadata({ params }: ParamsProp) {
