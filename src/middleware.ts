@@ -12,7 +12,6 @@ const { auth } = NextAuth(authConfig);
 export default auth((req) => {
   const session = req.auth;
   const isLoggedIn = !!session;
-  console.log(session, "session");
 
   const currentPath = req.nextUrl.pathname;
 
@@ -22,6 +21,9 @@ export default auth((req) => {
   const isApiAuthRoute = currentPath.startsWith(authApiPrefix);
   const isAdminRoute = currentPath.startsWith("/admin");
   const isAuthRoute = authRoutes.includes(currentPath);
+
+  if (!isPublicRoute && !isAdminRoute && !isAuthRoute && !isApiAuthRoute)
+    return;
 
   if (isApiAuthRoute) return;
   if (!isLoggedIn && isAuthRoute) return;

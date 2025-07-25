@@ -22,8 +22,6 @@ export default function NavBar() {
     function onBlurNav(e: MouseEvent) {
       const targetEl = e.target as HTMLElement;
 
-      console.log(targetEl.closest("nav"));
-
       if (navIsOpen && !targetEl.closest("#user-nav")) {
         closeNavOnMobile();
       }

@@ -8,10 +8,10 @@ export function useSidebar() {
   useEffect(() => {
     // on reload this should run
     if (window.innerWidth >= 768) {
-      console.log(true);
+    
       dispatch(onToggleSidebar(true));
     } else if (window.innerWidth <= 768) {
-      console.log(false);
+      
       dispatch(onToggleSidebar(false));
     }
     // while this should run as the screen is being resized

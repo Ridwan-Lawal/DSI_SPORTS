@@ -8,7 +8,9 @@ export async function getImageBlurDataUrl(imageUrl: string | null | undefined) {
       const { base64 } = await getPlaiceholder(Buffer.from(buffer));
       return base64;
     } catch (error) {
-      console.error("Error generating base64:", error);
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      }
       return null;
     }
   }

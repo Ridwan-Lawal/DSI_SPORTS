@@ -41,9 +41,6 @@ export const getArticlesCategory = cache(async function () {
 
 export const getHomeArticles = cache(async function (category?: string) {
   try {
-    // let dbQuery = db.with().select().from(posts);
-
-    console.log(category);
     let dbQuery;
 
     if (!category) {
@@ -128,7 +125,7 @@ export const getHomeArticles = cache(async function (category?: string) {
     }
 
     const articles = await dbQuery;
-    console.log(articles);
+
     return articles;
   } catch (error) {
     if (error instanceof Error) {

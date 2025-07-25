@@ -15,7 +15,7 @@ export default function ProfileSettings() {
     null,
   );
   const { user, update } = useGetUser();
-  console.log(user);
+
   const { featuredImageLink: avatarUrl, onImageUpload } =
     useUploadImageToCloudinary();
   const { formErrors, inputs } = state ?? {};

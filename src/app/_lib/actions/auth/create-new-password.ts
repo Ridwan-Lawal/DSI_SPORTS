@@ -10,6 +10,22 @@ import { passwordCreateToken, users } from "@/src/db/schema/auth";
 import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 
+// export async function signupnewuser() {
+//   const hashedPassword = await bcrypt.hash("Demilade", 10);
+
+//   try {
+//     await db.insert(users).values({
+//       email: "support@dsifootball.live",
+//       password: hashedPassword,
+//       name: "Support Team",
+//     });
+//   } catch (error) {
+//     if (error instanceof Error) {
+//       throw new Error(error?.message);
+//     }
+//   }
+// }
+
 export async function createNewPasswordAction(
   prevState: unknown,
   formData: FormData,

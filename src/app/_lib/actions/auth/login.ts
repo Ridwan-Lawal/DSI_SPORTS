@@ -61,7 +61,7 @@ export async function loginAction(prevState: unknown, formData: FormData) {
       redirect: false,
     });
 
-    return { success: `Welcome back, Name`, redirect: true };
+    return { success: `Welcome back, ${existingAdmin?.name}`, redirect: true };
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error?.name) {

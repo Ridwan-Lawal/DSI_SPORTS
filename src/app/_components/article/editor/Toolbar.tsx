@@ -25,7 +25,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
   }
 
   return (
-    <div className="no-scrollbar relative flex items-center gap-4 overflow-auto rounded-md border border-neutral-200 px-4 py-2">
+    <div className="no-scrollbar flex items-center gap-4 overflow-auto rounded-md border border-neutral-200 px-4 py-2">
       <Headings editor={editor} />
       {/* bold */}
       <Toggle

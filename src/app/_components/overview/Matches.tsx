@@ -30,8 +30,6 @@ export default async function Matches() {
   const matchesData = await getMatches();
   const matches = matchesData?.matches?.slice(0, 5);
 
-  console.log(matches);
-
   return (
     <div className="space-y-6 rounded-md border border-neutral-100 bg-white px-6 pt-4 pb-6 shadow-md shadow-neutral-100">
       {/* header */}

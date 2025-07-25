@@ -23,9 +23,11 @@ export function totalViewsPercent(articles: Article[] | undefined) {
     );
 
     const viewPercentageBtwTwoMonth =
-      currentMonthViews && lastMonthViews
-        ? ((currentMonthViews - lastMonthViews) / lastMonthViews) * 100
-        : 0;
+      ((currentMonthViews - lastMonthViews) /
+        (lastMonthViews === 0 ? 1 : lastMonthViews)) *
+      100;
+
+    // if lastMonthViews is 0, and will calculate the percentage, it will be infinity, because anything/0 is infinity, so we rather replace the 0 by 1
 
     return { viewPercentageBtwTwoMonth, currentMonthViews };
   }

@@ -12,11 +12,9 @@ export function usePassword() {
     if (!inputEl) return;
 
     function onFocusPasswordInput() {
-      console.log(true);
       setIsPasswordInputFocused(true);
     }
     function onBlurPasswordInput() {
-      console.log(false);
       setIsPasswordInputFocused(false);
     }
 

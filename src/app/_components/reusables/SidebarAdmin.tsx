@@ -19,7 +19,7 @@ import { usePathname } from "next/navigation";
 
 export default function SidebarAdmin() {
   const { user } = useGetUser();
-  console.log(user, "yeesss");
+
   const pathname = usePathname();
   const { mobileSidebarIsOpen } = useAppSelector(getLayout);
   const dispatch = useAppDispatch();
@@ -35,13 +35,13 @@ export default function SidebarAdmin() {
     <AnimatePresence>
       {mobileSidebarIsOpen && (
         <motion.div
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -300, opacity: 0 }}
-          transition={{ ease: "linear", duration: 0.2 }}
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={{ x: "0%", opacity: 1 }}
+          exit={{ x: "-100%", opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.15 }}
           className="sidebar-overlay fixed z-30 w-full bg-black/30 backdrop-blur-[2px] md:static"
         >
-          <div className="z-30 flex h-screen w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px]">
+          <div className="z-30 flex h-[100dvh] w-[260px] flex-col justify-between border-r border-neutral-200 bg-white backdrop-blur-[2px] md:h-screen">
             {/* header */}
             <header className="p flex h-[9vh] w-full items-center justify-between border-b border-neutral-200 px-2">
               <div className="relative size-12">

@@ -29,12 +29,6 @@ export default function NewsTabLists({ articleCategories }: NewsTabListsProps) {
       params.delete("category");
     }
 
-    console.log(
-      pathname,
-      params.toString(),
-      `${pathname}?${params.toString()}`,
-    );
-
     router.replace(`${pathname}?${params.toString()}`, {
       scroll: false,
     });

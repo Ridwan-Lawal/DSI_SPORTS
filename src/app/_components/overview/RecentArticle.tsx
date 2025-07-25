@@ -6,7 +6,7 @@ import Link from "next/link";
 export default async function RecentArticles() {
   const recentArticles = await getRecentArticles();
 
-  console.log(recentArticles);
+
 
   return (
     <div className="space-y-6 rounded-md border border-neutral-100 bg-white px-6 pt-4 pb-6 shadow-md shadow-neutral-100">

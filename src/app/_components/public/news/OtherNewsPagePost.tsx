@@ -22,7 +22,7 @@ export default async function OtherNewsPagePosts({
   return (
     <div className="cursor-pointer space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:flex md:flex-col md:justify-between md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100">
       {/* title and post image */}
-      <div className="flex justify-between md:flex-col md:gap-4">
+      <div className="flex justify-between gap-4 md:flex-col">
         <p
           className={`${bebasNeue?.className} w-[80%] sm:text-lg md:order-2 md:w-full md:px-4`}
         >

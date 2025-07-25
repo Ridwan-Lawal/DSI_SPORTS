@@ -15,10 +15,11 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
   const setLink = useCallback(() => {
     if (!editor) return;
 
-    const { from, to } = editor.state.selection;
-    const hasSelection = from !== to;
-    console.log(hasSelection);
-    // cancelled
+    // const { from, to } = editor.state.selection;
+    // const hasSelection = from !== to;
+
+    // fix the link not working
+
     if (url === null) {
       return;
     }
@@ -26,13 +27,10 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
     // empty
     if (url === "") {
       editor.chain().focus().extendMarkRange("link").unsetLink().run();
-      console.log(editor?.getJSON(), "Okay");
     }
 
     try {
       setIsLoading(false);
-      console.log(url);
-      console.log(editor?.getJSON(), "omya");
 
       // update link
       editor
@@ -41,8 +39,6 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
         .extendMarkRange("link")
         .setLink({ href: url })
         .run();
-
-      console.log(editor?.getJSON());
     } catch (error) {
       if (error instanceof Error) {
         toast.error("Something went wrong");
@@ -56,9 +52,12 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
 
   function onAddLink() {
     if (!editor) return;
+
     const existingUrl = editor.getAttributes("link").href;
     setUrl(existingUrl || "");
+
     setLinkFieldOpen(true);
+    console.log("open link", linkFieldOpen);
   }
 
   function onRemoveLink() {
@@ -86,12 +85,12 @@ export default function LinkToggle({ editor }: { editor: Editor | null }) {
   }, []);
 
   return (
-    <div className="link-block flex flex-col items-center gap-2">
+    <div className="link-block z-50 flex flex-col items-center gap-2">
       <button type="button" onClick={onAddLink}>
         <Link className="h-4 w-4" onClick={onAddLink} />
       </button>
       {linkFieldOpen && (
-        <div className="absolute top-12 right-4 z-30 w-[300px] rounded-md bg-white p-2 shadow-md shadow-neutral-200 md:w-fit">
+        <div className="absolute top-12 right-4 z-50 w-[300px] rounded-md border border-neutral-200 bg-white p-2 shadow-md shadow-neutral-200 md:w-fit">
           <div className="flex w-full max-w-sm items-center space-x-2">
             <Input
               type="text"

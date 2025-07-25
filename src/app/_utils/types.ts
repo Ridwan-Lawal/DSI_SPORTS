@@ -4,6 +4,14 @@ import { InferSelectModel } from "drizzle-orm";
 
 export type Article = InferSelectModel<typeof posts>;
 
+export type Visitors =
+  | {
+      id: string;
+      visitedCount: number;
+      visitedAt: Date;
+    }[]
+  | undefined;
+
 export type User = InferSelectModel<typeof users>;
 
 export interface FeatureArticleProp {

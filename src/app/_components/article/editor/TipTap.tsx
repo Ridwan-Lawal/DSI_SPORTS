@@ -63,7 +63,9 @@ function Tiptap({ content, onUpdateContent }: TiptapProps) {
         maxSize: MAX_FILE_SIZE,
         limit: 3,
         upload: handleImageUpload,
-        onError: (error) => console.error("Upload failed:", error),
+        onError: (error) => {
+          throw new Error(error?.message);
+        },
       }),
       ListKeymap,
 
@@ -150,7 +152,7 @@ function Tiptap({ content, onUpdateContent }: TiptapProps) {
   });
 
   return (
-    <div className="space-y-4">
+    <div className="relative space-y-4">
       <Toolbar editor={editor} />
       <EditorContent
         editor={editor}
