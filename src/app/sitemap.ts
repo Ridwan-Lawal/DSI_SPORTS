@@ -1,16 +1,16 @@
-import { getAllArticles } from "@/src/app/_lib/data-service/homepage/articles";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const articles = await getAllArticles();
+  // uncomment the below august first
+  // const articles = await getAllArticles();
 
-  //urls for dynamic routes for each article
-  const articlesUrls = articles?.map((article) => ({
-    url: `${process.env.NEXT_PUBLIC_APP_URL}/news/${article.slug}`,
-    lastModified: new Date(
-      article?.updatedAt || article?.createdAt || Date.now(),
-    ),
-  }));
+  //urls for dynamic routes for each  (uncomment the below august first)
+  // const articlesUrls = articles?.slice(0, 10)?.map((article) => ({
+  //   url: `${process.env.NEXT_PUBLIC_APP_URL}/news/${article.slug}`,
+  //   lastModified: new Date(
+  //     article?.updatedAt || article?.createdAt || Date.now(),
+  //   ),
+  // }));
 
   return [
     {
@@ -30,6 +30,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${process.env.NEXT_PUBLIC_APP_URL}/contact`,
       lastModified: new Date(),
     },
-    ...(articlesUrls ?? []),
+    // ...(articlesUrls ?? []),
   ];
 }

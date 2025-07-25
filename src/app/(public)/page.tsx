@@ -11,7 +11,10 @@ import LatestNewsSkeleton, {
 } from "@/src/app/_components/skeletons/homepage";
 import { Suspense } from "react";
 
-export default async function Page() {
+// remove aug 1st
+export const dynamic = "force-dynamic";
+
+export default function Page() {
   return (
     <div className="bg-slate-50">
       <div className="mx-auto max-w-[1440px] py-12">

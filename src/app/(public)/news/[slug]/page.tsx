@@ -2,7 +2,6 @@
 
 import Post from "@/src/app/_components/public/post-page/Post";
 import { PostSkeleton } from "@/src/app/_components/skeletons/news-skeleton";
-import { getAllArticles } from "@/src/app/_lib/data-service/homepage/articles";
 import { getArticleBySlug } from "@/src/app/_lib/data-service/news/posts";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -30,17 +29,19 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams() {
-  const articles = await getAllArticles();
+// uncomment aug 1st 2025
 
-  if (!articles || articles?.length === 0) {
-    return [];
-  }
+// export async function generateStaticParams() {
+//   const articles = await getAllArticles();
 
-  return articles?.map((article) => ({
-    slug: article?.slug,
-  }));
-}
+//   if (!articles || articles?.length === 0) {
+//     return [];
+//   }
+
+//   return articles?.slice(0, 10).map((article) => ({
+//     slug: article?.slug,
+//   }));
+// }
 
 export default async function Page({
   params,

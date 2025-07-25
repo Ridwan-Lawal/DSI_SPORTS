@@ -13,7 +13,7 @@ import { ImageUploadNode } from "@/components/tiptap-node/image-upload-node";
 import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils";
 import { Image } from "@tiptap/extension-image";
 
-import "@/components/tiptap-node/image-node/image-node.scss";
+import "@/components/tiptap-node/image-upload-node/image-upload-node.scss";
 import Placeholder from "@tiptap/extension-placeholder";
 import { Dispatch, SetStateAction } from "react";
 // import "@/components/tiptap-node/paragraph-node/paragraph-node.scss";

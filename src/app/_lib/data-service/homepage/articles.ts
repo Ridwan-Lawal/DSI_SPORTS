@@ -14,7 +14,8 @@ export const getAllArticles = cache(async function () {
         tags: posts?.tags,
       })
       .from(posts)
-      .where(eq(posts?.status, "published"));
+      .where(eq(posts?.status, "published"))
+      .orderBy(desc(posts.publishedAt));
 
     return articles;
   } catch (error) {
