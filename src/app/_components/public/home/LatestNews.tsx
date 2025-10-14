@@ -8,7 +8,7 @@ export default async function LatestNews() {
 
   const featuredArticleData = latestArticles?.at(0);
 
-  const otherArticles = latestArticles?.slice(1);
+  const otherArticles = latestArticles?.slice(1, 17);
 
   return (
     <div className="space-y-6">

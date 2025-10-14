@@ -2,7 +2,6 @@ import { getImageBlurDataUrl } from "@/src/app/_lib/sharp/blur-data-url";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { formatArticleDate } from "@/src/app/_utils/date";
 import { OtherArticleProp } from "@/src/app/_utils/types";
-import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,7 +17,7 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
   return (
     <Link
       href={`/news/${slug}`}
-      className="w-[300px] shrink-0 space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100"
+      className="flex w-[300px] shrink-0 flex-col gap-6 space-y-4 self-stretch overflow-hidden border-b border-neutral-200 pb-5 md:space-y-5 md:rounded-sm md:border md:border-neutral-200 md:shadow-sm md:shadow-neutral-100"
     >
       {/* title and post image */}
       <div className="flex justify-between gap-4 md:flex-col">
@@ -40,6 +39,10 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
               quality={100}
             />
           )}
+
+          <p className="absolute bottom-2 left-2 rounded-3xl bg-black/80 px-3 py-0.5 text-[11px] font-medium text-white capitalize">
+            {category}
+          </p>
         </div>
       </div>
 
@@ -47,7 +50,7 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
       <div className="flex items-center justify-between md:px-4">
         {/* Author and publish time */}
 
-        <div className="flex items-center gap-1">
+        <div className="flex w-full items-center justify-between gap-1">
           {/* author */}
           <div className="flex items-center gap-3">
             <div className="relative size-[20px] overflow-hidden rounded-full">
@@ -67,16 +70,11 @@ export default async function TransferNewsCard({ article }: OtherArticleProp) {
               {author?.name}
             </p>
           </div>
-          <Dot className="size-3.5 text-neutral-500" />
 
           <p className="text-[12px] text-neutral-500">
             {formatArticleDate(publishedAt)}
           </p>
         </div>
-
-        <p className="text-[12px] text-neutral-500 capitalize lg:hidden xl:block">
-          {category}
-        </p>
       </div>
     </Link>
   );

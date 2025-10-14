@@ -37,6 +37,7 @@ export const getArticleBySlug = cache(async function (slug: string) {
     return article;
   } catch (error) {
     if (error instanceof Error) {
+      console.log(error);
       throw new Error(error.message);
     }
   }

@@ -3,7 +3,6 @@ import { getImageBlurDataUrl } from "@/src/app/_lib/sharp/blur-data-url";
 import { bebasNeue } from "@/src/app/_styles/font";
 import { formatArticleDate } from "@/src/app/_utils/date";
 import { formatExcerpts } from "@/src/app/_utils/formatExcerpts";
-import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -41,6 +40,10 @@ export default async function FeaturedNews({
             priority={true}
           />
         )}
+
+        <p className="absolute bottom-2 left-2 rounded-3xl bg-black/80 px-3 py-0.5 text-[13px] font-medium text-white capitalize">
+          {category}
+        </p>
       </div>
 
       <div className="space-y-3 md:w-[50%] lg:w-[35%] lg:space-y-5">
@@ -56,7 +59,7 @@ export default async function FeaturedNews({
         <div className="flex items-center justify-between">
           {/* Author and publish time */}
 
-          <div className="flex items-center gap-1">
+          <div className="flex w-full items-center justify-between gap-1">
             {/* author */}
             <div className="flex items-center gap-3">
               <div className="relative size-[24px] overflow-hidden rounded-full">
@@ -77,14 +80,11 @@ export default async function FeaturedNews({
                 {author?.name}
               </p>
             </div>
-            <Dot className="size-4 text-neutral-500" />
 
             <p className="text-[13px] text-neutral-500">
               {formatArticleDate(publishedAt)}
             </p>
           </div>
-
-          <p className="text-[13px] text-neutral-500 capitalize">{category}</p>
         </div>
       </div>
     </Link>

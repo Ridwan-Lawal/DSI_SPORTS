@@ -129,6 +129,12 @@ export const getHomeArticles = cache(async function (category?: string) {
     return articles;
   } catch (error) {
     if (error instanceof Error) {
+      console.log({
+        name: error?.name,
+        cause: error?.cause,
+        message: error?.message,
+        stack: error?.stack,
+      });
       throw new Error(error?.message);
     }
   }

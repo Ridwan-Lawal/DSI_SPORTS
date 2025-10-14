@@ -4,14 +4,6 @@ import { posts } from "@/src/db/schema/article";
 import { and, count, desc, eq } from "drizzle-orm";
 
 export async function getNews(category: string | undefined, pageNo: string) {
-  // 1. Ensure user is logged - This is a public page,
-
-  // 2. Ensure data belongs to user - no mutations / public page,
-
-  // 3. build the data and ensure input safety - no data to build
-
-  // 4. Getting data....
-
   let dbQuery;
 
   if (!category && pageNo) {

@@ -37,6 +37,10 @@ export default async function FeaturedArticle({
             priority={true}
           />
         )}
+
+        <p className="absolute bottom-2 left-2 rounded-3xl bg-black/80 px-3 py-0.5 text-[13px] font-medium text-white capitalize">
+          {category}
+        </p>
       </div>
 
       <div className="space-y-3 md:w-[50%] lg:w-[35%] lg:space-y-5">
