@@ -2,9 +2,18 @@ import { formatDistanceToNow } from "date-fns";
 
 export function formatArticleDate(publishedAt: Date | null | undefined) {
   if (publishedAt) {
-    return formatDistanceToNow(new Date(publishedAt), {
+    const distance = formatDistanceToNow(new Date(publishedAt), {
       addSuffix: true,
     });
+
+    return distance
+      .replace("about ", "")
+      .replace(" minutes", "min")
+      .replace(" minute", "min")
+      .replace(" hours", "hrs")
+      .replace(" hour", "hr")
+      .replace(" months", "mos")
+      .replace(" month", "mo");
   }
 }
 

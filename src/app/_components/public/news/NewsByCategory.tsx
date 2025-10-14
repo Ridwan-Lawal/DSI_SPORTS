@@ -48,7 +48,11 @@ export default async function NewsByCategory({ query }: QueryType) {
           {/* grid */}
 
           {otherNewsData?.map((news) => (
-            <Link href={`/news/${news?.slug}`} key={news?.id}>
+            <Link
+              href={`/news/${news?.slug}`}
+              key={news?.id}
+              className="h-full self-stretch border"
+            >
               <OtherNewsPagePosts news={news} />
             </Link>
           ))}
