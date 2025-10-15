@@ -4,7 +4,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // uncomment the below august first
   // const articles = await getAllArticles();
 
-  //urls for dynamic routes for each  (uncomment the below august first)
+  // // urls for dynamic routes for each  article
   // const articlesUrls = articles?.slice(0, 10)?.map((article) => ({
   //   url: `${process.env.NEXT_PUBLIC_APP_URL}/news/${article.slug}`,
   //   lastModified: new Date(
