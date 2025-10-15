@@ -19,7 +19,7 @@ export default async function OtherNewsPagePosts({
   ]);
 
   return (
-    <div className="h-full cursor-pointer space-y-4 self-stretch overflow-hidden border-b border-neutral-200 pb-5 md:flex md:flex-col md:space-y-7 md:rounded-sm md:border md:border-black md:shadow-sm md:shadow-neutral-100">
+    <div className="h-full cursor-pointer space-y-4 self-stretch overflow-hidden border-b border-neutral-200 pb-5 md:flex md:flex-col md:space-y-7 md:rounded-sm md:border md:border-neutral-100 md:shadow-sm md:shadow-neutral-100">
       {/* title and post image */}
       <div className="flex justify-between gap-4 md:flex-col">
         <p
@@ -40,7 +40,7 @@ export default async function OtherNewsPagePosts({
               blurDataURL={featuredImageBlurDataUrl ?? ""}
             />
           )}
-          <p className="absolute bottom-2 left-2 rounded-3xl bg-black/80 px-3 py-0.5 text-[11px] font-medium text-white capitalize">
+          <p className="absolute bottom-2 left-2 hidden rounded-3xl bg-black/80 px-3 py-0.5 text-[11px] font-medium text-white capitalize md:block">
             {category}
           </p>
         </div>

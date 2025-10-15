@@ -51,7 +51,7 @@ export default async function NewsByCategory({ query }: QueryType) {
             <Link
               href={`/news/${news?.slug}`}
               key={news?.id}
-              className="h-full self-stretch border"
+              className="h-full self-stretch"
             >
               <OtherNewsPagePosts news={news} />
             </Link>

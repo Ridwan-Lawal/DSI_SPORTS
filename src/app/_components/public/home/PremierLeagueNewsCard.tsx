@@ -41,7 +41,7 @@ export default async function PremierLeagueNewsCard({
               quality={100}
             />
           )}
-          <p className="absolute bottom-2 left-2 rounded-3xl bg-black/80 px-3 py-0.5 text-[11px] font-medium text-white capitalize">
+          <p className="absolute bottom-2 left-2 hidden rounded-3xl bg-black/80 px-3 py-0.5 text-[11px] font-medium text-white capitalize md:block">
             {category}
           </p>
         </div>

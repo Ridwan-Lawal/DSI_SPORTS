@@ -79,7 +79,7 @@ export default function LatestNewsSkeleton() {
             key={i}
             className="space-y-4 overflow-hidden border-b border-neutral-200 pb-5 md:space-y-8 md:rounded-sm"
           >
-            <div className="flex justify-between md:flex-col md:gap-4">
+            <div className="flex justify-between gap-8 md:flex-col">
               <Skeleton className="h-5 w-[80%] md:order-2 md:w-full md:px-4" />
               <Skeleton className="relative order-1 h-[90px] w-[70px] md:aspect-video md:h-[220px] md:w-full md:rounded-none lg:h-[200px]" />
             </div>
