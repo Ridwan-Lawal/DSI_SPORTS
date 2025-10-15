@@ -2,6 +2,8 @@ import QueryProviders from "@/src/app/_lib/react-query/Providers";
 import StoreProvider from "@/src/app/_lib/redux/StoreProvider";
 import { roboto } from "@/src/app/_styles/font";
 import "@_styles/globals.css";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
@@ -110,7 +112,8 @@ export default function RootLayout({
             },
           }}
         />
-        {/* <Analytics /> */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
