@@ -23,6 +23,7 @@ interface CategoriesProps {
       tags: string;
       seoTitle: string;
       seoDescription: string;
+      featuredImage: string;
     }>
   >;
   disabled: boolean;

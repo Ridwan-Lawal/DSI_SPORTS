@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import Categories from "@/src/app/_components/article/Categories";
 
-import { Input as ShadInput } from "@/components/ui/input";
 import Tiptap from "@/src/app/_components/article/editor/TipTap";
 import Input from "@/src/app/_components/auth/Input";
 import { CategorySkeleton } from "@/src/app/_components/skeletons/articles-skeleton";
@@ -47,7 +46,8 @@ export default function NewArticle({
   );
 
   const { formData, setFormData } = useStoreFormDataInStorage(content);
-  const { featuredImageLink, onImageUpload } = useUploadImageToCloudinary();
+  const { featuredImageLink, onImageUpload, uploading } =
+    useUploadImageToCloudinary();
   const router = useRouter();
   const [isDrafting, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -107,6 +107,8 @@ export default function NewArticle({
       formEl.reset();
     }
   }
+
+  console.log("feature image", featuredImageLink);
 
   return (
     <div className="px-4 pt-4 pb-8 lg:px-6">
@@ -240,173 +242,209 @@ export default function NewArticle({
                 </Input>
               </div>
             </div>
+          </div>
 
-            {/* ==== article settings and seo settings */}
-            <div className="flex flex-col gap-5 lg:w-[40%]">
-              {/* ===== Article settings ======== */}
+          {/* ==== article settings and seo settings */}
+          <div className="flex flex-col gap-5 lg:w-[40%]">
+            {/* ===== Article settings ======== */}
+            <div className="h-fit space-y-6 rounded-lg border border-neutral-200 px-4 py-6 lg:w-full">
+              <div>
+                <h5 className="font-semibold capitalize">article settings</h5>
+                <p className="text-sm text-neutral-500 md:text-base">
+                  Configure article metadata
+                </p>
+              </div>
+
+              <div className="space-y-5">
+                {/* ==== category ====  */}
+                <input
+                  type="hidden"
+                  value={articleToEdit?.category || formData?.category}
+                  name="category"
+                />
+                <Input
+                  htmlFor="category"
+                  label="Category"
+                  error={formErrors?.category?.at(0)}
+                >
+                  <Suspense fallback={<CategorySkeleton />}>
+                    <Categories
+                      disabled={isPublishing || isDrafting}
+                      defaultValue={
+                        articleToEdit?.category || formData?.category
+                      }
+                      setFormData={setFormData}
+                    />
+                  </Suspense>
+                </Input>
+
+                {/* ==== tags ===== */}
+                <Input
+                  htmlFor="tags"
+                  label="Tags"
+                  error={formErrors?.tags?.at(0)}
+                >
+                  <input
+                    type="text"
+                    name="tags"
+                    id="tags"
+                    disabled={isPublishing || isDrafting}
+                    aria-disabled={isPublishing || isDrafting}
+                    defaultValue={
+                      articleToEdit?.tags ||
+                      (inputs?.title as string) ||
+                      formData?.tags
+                    }
+                    onChange={(e) =>
+                      setFormData((cur) => ({ ...cur, tags: e.target.value }))
+                    }
+                    autoComplete="tags"
+                    aria-label="tags"
+                    aria-describedby="tags-error"
+                    aria-invalid={!!formErrors?.tags?.at(0)}
+                    aria-live="polite"
+                    placeholder="Enter tags seperated by commas e.g Transfer, Ronaldo, Al-hilal, CR7"
+                    className="text-sm"
+                  />
+                </Input>
+
+                {/* ==== Featured image ==== */}
+                <input
+                  type="hidden"
+                  name="featuredImageLink"
+                  value={featuredImageLink || ""}
+                />
+                <Input
+                  htmlFor="featuredImage"
+                  label="Feature Image"
+                  error={
+                    formErrors?.featuredImage?.at(0) ||
+                    formErrors?.featuredImageLink?.at(0)
+                  }
+                >
+                  <input
+                    type="file"
+                    disabled={isPublishing || isDrafting}
+                    aria-disabled={isPublishing || isDrafting}
+                    name="featuredImage"
+                    id="featuredImage"
+                    onChange={(e) => onImageUpload(e)}
+                    defaultValue=""
+                    autoComplete="featuredImage"
+                    aria-label="featuredImage"
+                    aria-invalid={!!formErrors?.featuredImage?.at(0)}
+                    aria-describedby="featureImage-error"
+                    aria-live="polite"
+                    placeholder=""
+                    className="flex h-10 items-center md:text-base"
+                  />
+                  {uploading && (
+                    <p className="text-xs italic">Uploading image...</p>
+                  )}
+                </Input>
+              </div>
+
+              {/* <Input
+                  htmlFor="featuredImage"
+                  label="Featured Image"
+                  error={formErrors?.title?.at(0)}
+                >
+                  <input
+                    type="text"
+                    name="featuredImage"
+                    id="featuredImage"
+                    disabled={isPublishing || isDrafting}
+                    aria-disabled={isPublishing || isDrafting}
+                    onChange={(e) =>
+                      setFormData((cur) => ({
+                        ...cur,
+                        featuredImage: e.target.value,
+                      }))
+                    }
+                    defaultValue={
+                      articleToEdit?.featuredImage ||
+                      (inputs?.featuredImage as string) ||
+                      formData?.featuredImage
+                    }
+                    autoComplete="featuredImage"
+                    aria-label="featuredImage"
+                    aria-live="polite"
+                    aria-invalid={!!formErrors?.title?.at(0)}
+                    aria-describedby="title-error"
+                    placeholder="Enter the url for your featured image"
+                    className="md:h-[42px] md:py-3 md:text-base"
+                  />
+                </Input> */}
+
+              {/* ===== SEO SETTINGS ====*/}
               <div className="h-fit space-y-6 rounded-lg border border-neutral-200 px-4 py-6 lg:w-full">
                 <div>
-                  <h5 className="font-semibold capitalize">article settings</h5>
+                  <h5 className="font-semibold capitalize">SEO Settings</h5>
                   <p className="text-sm text-neutral-500 md:text-base">
-                    Configure article metadata
+                    Optimize this article for search engines
                   </p>
                 </div>
 
                 <div className="space-y-5">
-                  {/* ==== category ====  */}
-                  <input
-                    type="hidden"
-                    value={articleToEdit?.category || formData?.category}
-                    name="category"
-                  />
-                  <Input
-                    htmlFor="category"
-                    label="Category"
-                    error={formErrors?.category?.at(0)}
-                  >
-                    <Suspense fallback={<CategorySkeleton />}>
-                      <Categories
-                        disabled={isPublishing || isDrafting}
-                        defaultValue={
-                          articleToEdit?.category || formData?.category
-                        }
-                        setFormData={setFormData}
-                      />
-                    </Suspense>
-                  </Input>
-
-                  {/* ==== tags ===== */}
-                  <Input
-                    htmlFor="tags"
-                    label="Tags"
-                    error={formErrors?.tags?.at(0)}
-                  >
+                  {/* ==== Excerpt ===== */}
+                  <Input htmlFor="seoTitle" label="SEO Title" error="">
                     <input
                       type="text"
-                      name="tags"
-                      id="tags"
+                      name="seoTitle"
+                      id="seoTitle"
                       disabled={isPublishing || isDrafting}
                       aria-disabled={isPublishing || isDrafting}
                       defaultValue={
-                        articleToEdit?.tags ||
-                        (inputs?.title as string) ||
-                        formData?.tags
+                        articleToEdit?.seoTitle || formData?.seoTitle
                       }
                       onChange={(e) =>
-                        setFormData((cur) => ({ ...cur, tags: e.target.value }))
+                        setFormData((cur) => ({
+                          ...cur,
+                          seoTitle: e.target.value,
+                        }))
                       }
-                      autoComplete="tags"
-                      aria-label="tags"
-                      aria-describedby="tags-error"
-                      aria-invalid={!!formErrors?.tags?.at(0)}
+                      autoComplete="seoTitle"
+                      aria-label="seoTitle"
                       aria-live="polite"
-                      placeholder="Enter tags seperated by commas e.g Transfer, Ronaldo, Al-hilal, CR7"
+                      placeholder="Enter SEO title"
                       className="text-sm"
                     />
                   </Input>
 
-                  {/* ==== Featured image ==== */}
-                  <input
-                    type="hidden"
-                    name="featuredImageLink"
-                    value={featuredImageLink || ""}
-                  />
+                  {/* ==== Meta description ===== */}
                   <Input
-                    htmlFor="featuredImage"
-                    label="Feature Image"
-                    error={
-                      formErrors?.featuredImage?.at(0) ||
-                      formErrors?.featuredImageLink?.at(0)
-                    }
+                    htmlFor="seoDescription"
+                    label="Meta Description"
+                    error=""
                   >
-                    <ShadInput
-                      type="file"
+                    <textarea
+                      rows={3}
+                      name="seoDescription"
+                      id="seoDescription"
                       disabled={isPublishing || isDrafting}
                       aria-disabled={isPublishing || isDrafting}
-                      name="featuredImage"
-                      id="featuredImage"
-                      onChange={(e) => onImageUpload(e)}
-                      defaultValue=""
-                      autoComplete="featuredImage"
-                      aria-label="featuredImage"
-                      aria-invalid={!!formErrors?.featuredImage?.at(0)}
-                      aria-describedby="featureImage-error"
+                      defaultValue={
+                        articleToEdit?.seoDescription ||
+                        formData?.seoDescription
+                      }
+                      onChange={(e) =>
+                        setFormData((cur) => ({
+                          ...cur,
+                          seoDescription: e.target.value,
+                        }))
+                      }
+                      autoComplete="seoDescription"
+                      aria-label="seoDescription"
                       aria-live="polite"
-                      placeholder=""
-                      className="flex h-10 items-center md:text-base"
+                      placeholder="Enter meta description"
+                      className="md:py-3 md:text-base"
                     />
                   </Input>
-                </div>
-
-                {/* ===== SEO SETTINGS ====*/}
-                <div className="h-fit space-y-6 rounded-lg border border-neutral-200 px-4 py-6 lg:w-full">
-                  <div>
-                    <h5 className="font-semibold capitalize">SEO Settings</h5>
-                    <p className="text-sm text-neutral-500 md:text-base">
-                      Optimize this article for search engines
-                    </p>
-                  </div>
-
-                  <div className="space-y-5">
-                    {/* ==== Excerpt ===== */}
-                    <Input htmlFor="seoTitle" label="SEO Title" error="">
-                      <input
-                        type="text"
-                        name="seoTitle"
-                        id="seoTitle"
-                        disabled={isPublishing || isDrafting}
-                        aria-disabled={isPublishing || isDrafting}
-                        defaultValue={
-                          articleToEdit?.seoTitle || formData?.seoTitle
-                        }
-                        onChange={(e) =>
-                          setFormData((cur) => ({
-                            ...cur,
-                            seoTitle: e.target.value,
-                          }))
-                        }
-                        autoComplete="seoTitle"
-                        aria-label="seoTitle"
-                        aria-live="polite"
-                        placeholder="Enter SEO title"
-                        className="text-sm"
-                      />
-                    </Input>
-
-                    {/* ==== Meta description ===== */}
-                    <Input
-                      htmlFor="seoDescription"
-                      label="Meta Description"
-                      error=""
-                    >
-                      <textarea
-                        rows={3}
-                        name="seoDescription"
-                        id="seoDescription"
-                        disabled={isPublishing || isDrafting}
-                        aria-disabled={isPublishing || isDrafting}
-                        defaultValue={
-                          articleToEdit?.seoDescription ||
-                          formData?.seoDescription
-                        }
-                        onChange={(e) =>
-                          setFormData((cur) => ({
-                            ...cur,
-                            seoDescription: e.target.value,
-                          }))
-                        }
-                        autoComplete="seoDescription"
-                        aria-label="seoDescription"
-                        aria-live="polite"
-                        placeholder="Enter meta description"
-                        className="md:py-3 md:text-base"
-                      />
-                    </Input>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="mt-6 flex justify-end">
             {articleToEdit ? (
               <Button

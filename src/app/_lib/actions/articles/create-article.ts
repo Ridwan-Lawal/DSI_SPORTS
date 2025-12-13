@@ -80,16 +80,23 @@ export async function publishArticleAction(
     PublishArticleSchema.safeParse(articleContents);
 
   if (!validatedArticleContent?.success) {
+    console.log(
+      "errors:",
+      validatedArticleContent?.error?.flatten()?.fieldErrors,
+    );
     return {
       formErrors: validatedArticleContent?.error?.flatten()?.fieldErrors,
       inputs: articleContents,
     };
   }
 
+  console.log("DATA:", articleContents);
+
   const {
     title,
     category,
     content,
+    // featuredImage,
     featuredImageLink,
     tags,
     seoTitle,
@@ -117,6 +124,7 @@ export async function publishArticleAction(
       seoDescription: seoDescription || excerpt,
       status: "published",
       featuredImage: featuredImageLink,
+      // featuredImage: featuredImageLink,
       authorId: user?.id,
     });
 

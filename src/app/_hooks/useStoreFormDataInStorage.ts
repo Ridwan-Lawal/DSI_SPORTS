@@ -7,6 +7,7 @@ export const initialState = {
   tags: "",
   seoTitle: "",
   seoDescription: "",
+  featuredImage: "",
 };
 
 export function useStoreFormDataInStorage(content: string) {

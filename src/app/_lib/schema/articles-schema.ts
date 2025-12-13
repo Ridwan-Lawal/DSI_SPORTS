@@ -17,6 +17,8 @@ export const PublishArticleSchema = z.object({
     .min(1, { message: "Please fill in your article tags!" })
     .max(150, { message: "Your article title cannot exceed 150 characters." }),
 
+  // featuredImage: z.string().min(1, "Enter a featured image"),
+
   featuredImage: z.object({
     size: z.number().gt(0, { message: "Please upload a valid feature image." }),
   }),
