@@ -34,7 +34,7 @@ export default async function FeaturedArticle({
             quality={100}
             placeholder={featuredImageBlurDataUrl ? "blur" : "empty"}
             blurDataURL={featuredImageBlurDataUrl ?? ""}
-            priority={true}
+            priority
           />
         )}
 

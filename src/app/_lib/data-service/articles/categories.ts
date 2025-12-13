@@ -27,7 +27,7 @@ export async function getCategories(): Promise<CategorySchemaType[]> {
   } catch (error) {
     if (error instanceof AxiosError) {
       if (process.env.NODE_ENV === "development") {
-        console.log("categories (GET):", error);
+        console.log("categories (GET):", error.message);
       }
 
       if (error?.response) {

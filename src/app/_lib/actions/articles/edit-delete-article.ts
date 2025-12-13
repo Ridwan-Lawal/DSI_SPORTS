@@ -39,6 +39,7 @@ export async function editArticleAction(
     category,
     content,
     featuredImageLink,
+    // featuredImage,
     tags,
     seoTitle,
     seoDescription,
