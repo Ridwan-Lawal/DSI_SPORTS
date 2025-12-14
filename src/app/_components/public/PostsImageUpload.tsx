@@ -15,13 +15,7 @@ export default async function PostsImageUpload() {
       <p>
         Total Posts Left: {totalPostsNotUpdated} / {postsData?.length}
       </p>
-      {postsData?.map((post) => (
-        <PostUploadCard
-          key={post?.id}
-          post={post}
-          totalPost={postsData?.length}
-        />
-      ))}
+      {postsData?.map((post) => <PostUploadCard key={post?.id} post={post} />)}
     </div>
   );
 }

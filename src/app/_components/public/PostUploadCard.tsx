@@ -7,13 +7,7 @@ import { Article } from "@/src/app/_utils/types";
 import { useActionState, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function PostUploadCard({
-  post,
-  totalPost,
-}: {
-  post: Article;
-  totalPost: number;
-}) {
+export default function PostUploadCard({ post }: { post: Article }) {
   const [hasUploaded, setHasUploaded] = useState(false);
   const { onImageUpload, uploading, featuredImageLink } =
     useUploadImageToCloudinary();
