@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     template: "%s - DSI Football",
     default: "Home - DSI Football",
   },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
 
   description:
     "DSI Football is a platform dedicated to providing the latest news, updates, and insights on football. Stay informed with our comprehensive coverage of local and international football events.",
