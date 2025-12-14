@@ -40,11 +40,13 @@ export default function AnalyticsCard({
                   </span>
                 ) : percent && percent >= 1 ? (
                   <span className="flex items-center gap-1 text-green-500">
-                    <TrendingUp className="size-4 text-green-500" /> +{percent}%
+                    <TrendingUp className="size-4 text-green-500" /> +
+                    {percent.toFixed(2)}%
                   </span>
                 ) : (
                   <span className="flex items-center gap-1 text-red-500">
-                    <TrendingDown className="size-4 text-red-500" /> {percent}%
+                    <TrendingDown className="size-4 text-red-500" />{" "}
+                    {percent.toFixed(2)}%
                   </span>
                 )}{" "}
                 from last month
