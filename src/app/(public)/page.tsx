@@ -1,18 +1,8 @@
 import LatestNews from "@/src/app/_components/public/home/LatestNews";
-import NewsByCategories from "@/src/app/_components/public/home/NewsByCategories";
-import PremierLeagueNews from "@/src/app/_components/public/home/PremierLeague";
 import SocialsMediaDetails from "@/src/app/_components/public/home/SocialsMediaDetails";
-import TransferNews from "@/src/app/_components/public/home/TransferNews";
 
-import LatestNewsSkeleton, {
-  NewsByCategoriesSkeleton,
-  PremierLeagueNewsSkeleton,
-  TransferNewsSkeleton,
-} from "@/src/app/_components/skeletons/homepage";
+import LatestNewsSkeleton from "@/src/app/_components/skeletons/homepage";
 import { Suspense } from "react";
-
-// remove aug 1st
-export const dynamic = "force-dynamic";
 
 export default function Page() {
   return (
@@ -23,7 +13,7 @@ export default function Page() {
             <LatestNews />
           </Suspense>
 
-          <Suspense fallback={<TransferNewsSkeleton />}>
+          {/* <Suspense fallback={<TransferNewsSkeleton />}>
             <TransferNews />
           </Suspense>
 
@@ -33,7 +23,7 @@ export default function Page() {
 
           <Suspense fallback={<NewsByCategoriesSkeleton />}>
             <NewsByCategories />
-          </Suspense>
+          </Suspense> */}
         </div>
 
         {/* follow dsi */}
