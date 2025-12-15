@@ -1,7 +1,10 @@
 import LatestNews from "@/src/app/_components/public/home/LatestNews";
+import PremierLeagueNews from "@/src/app/_components/public/home/PremierLeague";
 import SocialsMediaDetails from "@/src/app/_components/public/home/SocialsMediaDetails";
 
-import LatestNewsSkeleton from "@/src/app/_components/skeletons/homepage";
+import LatestNewsSkeleton, {
+  PremierLeagueNewsSkeleton,
+} from "@/src/app/_components/skeletons/homepage";
 import { Suspense } from "react";
 
 export default function Page() {
@@ -17,11 +20,11 @@ export default function Page() {
             <TransferNews />
           </Suspense> */}
 
-          {/* <Suspense fallback={<PremierLeagueNewsSkeleton />}>
+          <Suspense fallback={<PremierLeagueNewsSkeleton />}>
             <PremierLeagueNews />
           </Suspense>
 
-          <Suspense fallback={<NewsByCategoriesSkeleton />}>
+          {/* <Suspense fallback={<NewsByCategoriesSkeleton />}>
             <NewsByCategories />
           </Suspense> */}
         </div>
