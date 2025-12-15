@@ -3,7 +3,7 @@ import postgres from "postgres";
 import * as articleSchema from "./schema/article";
 import * as authSchema from "./schema/auth";
 
-const client = postgres(process.env.DATABASE_URL!);
+const client = postgres(process.env.DATABASE_URL!, { prepare: false });
 
 export const db = drizzle(client, {
   schema: {
